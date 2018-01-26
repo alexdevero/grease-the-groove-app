@@ -49,11 +49,10 @@
   },
   "main": "app.js",
   "scripts": {
-    "build": "webpack --config webpack.build.config.js",
-    "dev": "webpack-dev-server --hot --host 0.0.0.0 --config=./webpack.dev.config.js",
-    "package": "webpack --config webpack.build.config.js",
+    "package": "electron-builder --dir",
     "postpackage": "electron-packager ./ --out=./builds",
-    "prod": "webpack --config webpack.build.config.js && electron --noDevServer ."
+    "prod": "parcel && electron --noDevServer .",
+    "start": "electron ./src/main.js"
   },
   "dependencies": {
     "react": "16.2.0",
@@ -61,24 +60,15 @@
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
-    "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
-    "babili-webpack-plugin": "^0.1.2",
-    "css-loader": "^0.28.9",
     "electron": "^1.7.11",
     "electron-builder": "19.55.2",
     "electron-packager": "^10.1.1",
-    "extract-text-webpack-plugin": "^3.0.2",
-    "file-loader": "^1.1.6",
-    "html-webpack-plugin": "^2.30.1",
+    "parcel-bundler": "^1.5.1",
     "postcss-cssnext": "^3.1.0",
     "postcss-import": "^11.0.0",
-    "postcss-loader": "^2.0.10",
     "postcss-nested": "^3.0.0",
-    "postcss-pxtorem": "^4.0.1",
-    "style-loader": "^0.19.1",
-    "webpack": "^3.10.0",
-    "webpack-dev-server": "^2.11.1"
+    "postcss-pxtorem": "^4.0.1"
   }
 }
