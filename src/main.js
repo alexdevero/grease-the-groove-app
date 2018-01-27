@@ -15,7 +15,7 @@ const url = require('url')
 const execa = require('execa')
 
 // const trayIcon = './src/assets/grease-the-groove-icon.png'
-const trayIcon = path.join(__dirname, 'assets/grease-the-groove-icon.png')
+const trayIcon = path.join(__dirname, 'app/assets/grease-the-groove-icon.png')
 
 function runParcel() {
   return new Promise(resolve => {
