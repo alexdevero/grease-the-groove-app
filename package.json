@@ -49,10 +49,11 @@
   },
   "main": "app.js",
   "scripts": {
-    "package": "electron-builder --dir",
+    "package-old": "electron-builder --dir",
     "postpackage": "electron-packager ./ --out=./builds",
-    "prod": "parcel && electron --noDevServer .",
-    "start": "electron ./src/main.js"
+    "prod": "electron --noDevServer ./src/main.js",
+    "start": "electron ./src/main.js",
+    "package": "node_modules/.bin/electron-packager . Grease --out=dist/win --platform=win32 --arch=x64 --overwrite --icon=src/app/assets/grease-the-groove-icon.ico"
   },
   "dependencies": {
     "react": "16.2.0",
