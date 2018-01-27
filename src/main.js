@@ -6,9 +6,16 @@ const app = electron.app
 // Module to create native browser window.
 const BrowserWindow = electron.BrowserWindow
 
+// Modules to create app tray icon
+const Menu = electron.Menu
+const Tray = electron.Tray
+
 const path = require('path')
 const url = require('url')
 const execa = require('execa')
+
+// const trayIcon = './src/assets/grease-the-groove-icon.png'
+const trayIcon = path.join(__dirname, 'assets/grease-the-groove-icon.png')
 
 function runParcel() {
   return new Promise(resolve => {
@@ -45,7 +52,43 @@ let mainWindow
 
 async function createWindow() {
   // Create the browser window.
-  mainWindow = new BrowserWindow({width: 375, height: 667})
+  mainWindow = new BrowserWindow({
+    width: 375,
+    height: 667,
+    title: 'Grease the Groove',
+    icon: trayIcon
+  })
+
+  // Create tray icon
+  // https://electronjs.org/docs/api/tray
+  appIcon = new Tray(trayIcon)
+
+  // Create RightClick context menu for tray icon
+  const contextMenu = Menu.buildFromTemplate([
+    {
+      label: 'Restore app',
+      click: () => {
+        mainWindow.show()
+      }
+    },
+    {
+      label: 'Quit',
+      click: () => {
+        mainWindow.close()
+      }
+    }
+  ])
+
+  // Set title for tray icon
+  appIcon.setToolTip('Grease the Groove')
+  // Create RightClick context menu
+  appIcon.setContextMenu(contextMenu)
+
+  // Restore (open) app after clicking on tray icon
+  // if window is already open, minimize it to system tray
+  appIcon.on('click', () => {
+    mainWindow.isVisible() ? mainWindow.hide() : mainWindow.show()
+  })
 
   await runParcel()
   // and load the index.html of the app.
@@ -60,6 +103,14 @@ async function createWindow() {
     // in an array if your app supports multi windows, this is the time
     // when you should delete the corresponding element.
     mainWindow = null
+  })
+
+  // Minimize window to system tray
+  // https://stackoverflow.com/questions/37828758/electron-js-how-to-minimize-close-window-to-system-tray-and-restore-window-back#38980563
+  mainWindow.on('minimize',function(event){
+      event.preventDefault()
+      // mainWindow.minimize()
+      mainWindow.hide()
   })
 }
 
