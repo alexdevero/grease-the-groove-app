@@ -23,15 +23,7 @@ Electron app to help you practice "[Grease the Groove]" method to achieve your g
 
 ### Install
 
-```
-$ npm install grease-the-groove-app
-```
-Or if you prefer using Yarn:
-```
-$ yarn add grease-the-groove-app
-```
-
-Or you can also clone this repo
+Clone this repo
 ```
 $ git clone https://github.com/alexdevero/grease-the-groove-app.git
 ```
