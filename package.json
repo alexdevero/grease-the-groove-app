@@ -47,26 +47,31 @@
     "npm": ">=5.x",
     "yarn": ">=1.x.x"
   },
-  "main": "app.js",
+  "main": "main.js",
   "scripts": {
-    "package-old": "electron-builder --dir",
+    "build": "webpack --config webpack.build.config.js",
+    "dev": "webpack-dev-server --hot --host 0.0.0.0 --config=./webpack.dev.config.js",
+    "package": "webpack --config webpack.build.config.js",
     "postpackage": "electron-packager ./ --out=./builds",
-    "prod": "electron --noDevServer ./src/main.js",
-    "start": "electron ./src/main.js",
-    "package": "node_modules/.bin/electron-packager . Grease --out=dist/win --platform=win32 --arch=x64 --overwrite --icon=src/app/assets/grease-the-groove-icon.ico"
+    "prod": "webpack --config webpack.build.config.js && electron --noDevServer ."
   },
   "dependencies": {
-    "react": "16.2.0",
-    "react-dom": "16.2.0"
+    "electron": "^1.7.11",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "styled-components": "^3.1.6"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
-    "electron": "^1.7.11",
-    "electron-builder": "19.55.2",
+    "babili-webpack-plugin": "^0.1.2",
     "electron-packager": "^10.1.2",
-    "parcel-bundler": "^1.5.1",
-    "styled-components": "^3.0.2"
+    "extract-text-webpack-plugin": "^3.0.2",
+    "file-loader": "^1.1.6",
+    "html-webpack-plugin": "^2.30.1",
+    "webpack": "^3.10.0",
+    "webpack-dev-server": "^2.11.1"
   }
 }
