@@ -1,12 +1,39 @@
 import React from 'react'
 
+import NotificationButton from './components/Notification'
+
 class App extends React.Component {
   constructor(props) {
     super(props)
 
     this.state = {
+      isSettingsOpen: false,
       sets: 6
     }
+  }
+
+  generateSetsList() {
+    let setsItems = []
+
+    for(let i = 0; i<this.state.sets; i++) {
+      setsItems.push(<li key={i}>
+        <label htmlFor={`set${i}`}>
+          <input id={`set${i}`} name={`set${i}`} type="checkbox"/>
+
+          <span>Set number {i+1}</span>
+        </label>
+      </li>)
+    }
+
+    return setsItems
+  }
+
+  toggleSettings() {
+    this.setState({isSettingsOpen: !this.state.isSettingsOpen})
+  }
+
+  updateNumOfSets(e) {
+    this.setState({sets: e.target.value})
   }
 
   render() {
@@ -16,19 +43,20 @@ class App extends React.Component {
 
         <p>Are you ready to get stronger?</p>
 
-        <ul>
-          {[...Array(this.state.sets)].map((x, i) =>
-            <li key={i}>
-              <checkbox>
-                <label htmlFor={i}>
-                  <input id={i} name={i} type="checkbox"/>
 
-                  <span>Set number {i+1}</span>
-                </label>
-              </checkbox>
-            </li>
-          )}
+        <span onClick={() => this.toggleSettings()}>Settings</span>
+
+        {this.state.isSettingsOpen && <div className="settings">
+          <p>How many sets do you want to do?</p>
+
+          <input type="number" onChange={(e) => this.updateNumOfSets(e)} />
+        </div>}
+
+        <ul>
+          {this.generateSetsList()}
         </ul>
+
+        {/* <NotificationButton /> */}
       </div>
     )
   }
