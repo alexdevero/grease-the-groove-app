@@ -1,6 +1,7 @@
 import React from 'react'
 
 import NotificationButton from './components/Notification'
+import Timer from './components/Timer'
 
 class App extends React.Component {
   constructor(props) {
@@ -8,14 +9,16 @@ class App extends React.Component {
 
     this.state = {
       isSettingsOpen: false,
-      sets: 6
+      isTimerShown: false,
+      numOfSets: 6,
+      restPauseLength: 90
     }
   }
 
   generateSetsList() {
     let setsItems = []
 
-    for(let i = 0; i<this.state.sets; i++) {
+    for(let i = 0; i<this.state.numOfSets; i++) {
       setsItems.push(<li key={i}>
         <label htmlFor={`set${i}`}>
           <input id={`set${i}`} name={`set${i}`} type="checkbox"/>
@@ -31,11 +34,25 @@ class App extends React.Component {
   toggleSettings(e) {
     e.preventDefault()
 
-    this.setState({isSettingsOpen: !this.state.isSettingsOpen})
+    this.setState({
+      isSettingsOpen: !this.state.isSettingsOpen
+    })
+  }
+
+  toggleTimer(e) {
+    e.preventDefault()
+
+    this.setState({
+      isTimerShown: !this.state.isTimerShown
+    })
   }
 
   updateNumOfSets(e) {
-    this.setState({sets: e.target.value})
+    this.setState({numOfSets: e.target.value})
+  }
+
+  updateRestPauseLength(e) {
+    this.setState({restPauseLength: e.target.value})
   }
 
   render() {
@@ -45,14 +62,21 @@ class App extends React.Component {
 
         <p>Are you ready to get stronger?</p>
 
-
         <a href="#" onClick={(e) => this.toggleSettings(e)}>Settings</a>
+
+        <a href="#" onClick={(e) => this.toggleTimer(e)}>Timer</a>
 
         {this.state.isSettingsOpen && <div className="settings">
           <p>How many sets do you want to do?</p>
 
-          <input type="number" onChange={(e) => this.updateNumOfSets(e)} />
+          <input type="number" placeholder={this.state.numOfSets} onChange={(e) => this.updateNumOfSets(e)} />
+
+          <p>How long should the rest pause be (minutes)?</p>
+
+          <input type="number" placeholder={this.state.restPauseLength} onChange={(e) => this.updateRestPauseLength(e)} />
         </div>}
+
+        {this.state.isTimerShown && <Timer pauseLength={this.state.restPauseLength} />}
 
         <ul>
           {this.generateSetsList()}

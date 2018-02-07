@@ -30,6 +30,10 @@ module.exports = {
         include: defaultInclude
       },
       {
+        test: /\.mp3$/,
+        use: 'file-loader'
+      },
+      {
         test: /\.(eot|svg|ttf|woff|woff2)$/,
         use: [{ loader: 'file-loader?name=font/[name]__[hash:base64:5].[ext]' }],
         include: defaultInclude
