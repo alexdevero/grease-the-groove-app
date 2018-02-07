@@ -28,7 +28,9 @@ class App extends React.Component {
     return setsItems
   }
 
-  toggleSettings() {
+  toggleSettings(e) {
+    e.preventDefault()
+
     this.setState({isSettingsOpen: !this.state.isSettingsOpen})
   }
 
@@ -44,7 +46,7 @@ class App extends React.Component {
         <p>Are you ready to get stronger?</p>
 
 
-        <span onClick={() => this.toggleSettings()}>Settings</span>
+        <a href="#" onClick={(e) => this.toggleSettings(e)}>Settings</a>
 
         {this.state.isSettingsOpen && <div className="settings">
           <p>How many sets do you want to do?</p>
