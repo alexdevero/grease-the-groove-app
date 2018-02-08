@@ -74,9 +74,15 @@ function createWindow() {
   ])
 
   // Set title for tray icon
+  appIcon.setTitle('Grease the Groove')
+  // Set toot tip for tray icon
   appIcon.setToolTip('Grease the Groove')
   // Create RightClick context menu
   appIcon.setContextMenu(contextMenu)
+  // Always highlight the tray icon
+  appIcon.setHighlightMode('always')
+  // The tray icon is not destroyed
+  appIcon.isDestroyed(false)
 
   // Restore (open) app after clicking on tray icon
   // if window is already open, minimize it to system tray
