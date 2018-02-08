@@ -100,7 +100,7 @@ export default class Timer extends React.Component {
   render() {
     return(
       <div>
-        <p>m: {this.state.time.m} s: {this.state.time.s}</p>
+        <p>{this.state.time.h}h {this.state.time.m}m {this.state.time.s}s</p>
 
         <button onClick={this.startTimer}>Start</button>
 
