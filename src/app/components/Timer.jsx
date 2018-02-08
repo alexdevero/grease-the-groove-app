@@ -95,6 +95,10 @@ export default class Timer extends React.Component {
     soundFile.volume = 1 // 0.5 is half volume
 
     soundFile.play()
+
+    setTimeout(() => {
+      alert('Time for Grease the Groove!')
+    }, 1000)
   }
 
   render() {
