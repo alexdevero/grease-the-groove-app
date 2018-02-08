@@ -9,6 +9,7 @@ const app = electron.app
 const BrowserWindow = electron.BrowserWindow
 
 const path = require('path')
+const platform = require('os').platform()
 const url = require('url')
 
 // Modules to create app tray icon
@@ -16,7 +17,14 @@ const Menu = electron.Menu
 const Tray = electron.Tray
 
 // Loead file for app icon
-const trayIcon = path.join(__dirname, 'src', 'assets/grease-the-groove-icon.png')
+let trayIcon
+
+// Determine appropriate icon for platform
+if (platform == 'darwin') {
+  trayIcon = path.join(__dirname, 'src', 'assets/grease-the-groove-icon.png')
+} else if (platform == 'win32') {
+  trayIcon = path.join(__dirname, 'src', 'assets/grease-the-groove-icon.ico')
+}
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
