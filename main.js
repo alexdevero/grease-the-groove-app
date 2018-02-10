@@ -16,8 +16,10 @@ const url = require('url')
 const Menu = electron.Menu
 const Tray = electron.Tray
 
-// Loead file for app icon
-let trayIcon
+// Create variables for icons to prevent disappearing icon du to JS garbage collection
+// https://electronjs.org/docs/faq#my-apps-windowtray-disappeared-after-a-few-minutes
+let trayIcon = null
+let appIcon = null
 
 // Determine appropriate icon for platform
 if (platform == 'darwin') {
@@ -55,7 +57,7 @@ function createWindow() {
   })
 
   // Create tray icon
-  const appIcon = new Tray(trayIcon)
+  appIcon = new Tray(trayIcon)
 
   // Create RightClick context menu for tray icon
   const contextMenu = Menu.buildFromTemplate([
@@ -66,7 +68,7 @@ function createWindow() {
       }
     },
     {
-      label: 'Quit',
+      label: 'Close app',
       click: () => {
         mainWindow.close()
       }
@@ -75,12 +77,16 @@ function createWindow() {
 
   // Set title for tray icon
   appIcon.setTitle('Grease the Groove')
+
   // Set toot tip for tray icon
   appIcon.setToolTip('Grease the Groove')
+
   // Create RightClick context menu
   appIcon.setContextMenu(contextMenu)
+
   // Always highlight the tray icon
   appIcon.setHighlightMode('always')
+
   // The tray icon is not destroyed
   appIcon.isDestroyed(false)
 
