@@ -3,12 +3,12 @@ import React from 'react'
 import bellSound from './../../assets/sounds/definite.mp3'
 
 export default class Timer extends React.Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
 
     this.state = {
       time: {},
-      seconds: 0
+      seconds: this.props.pauseLength * 60 // pauseLength is in minutes
     }
 
     this.timer = 0
@@ -19,7 +19,7 @@ export default class Timer extends React.Component {
     this.stopTimer = this.stopTimer.bind(this)
   }
 
-  secondsToTime(secs){
+  secondsToTime(secs) {
     let hours = Math.floor(secs / (60 * 60))
 
     let divisor_for_minutes = secs % (60 * 60)
@@ -37,28 +37,20 @@ export default class Timer extends React.Component {
     return obj
   }
 
-  componentWillMount() {
+  componentDidMount() {
     let restPauseLength = this.props.pauseLength * 60 // pauseLength is in minutes
 
     this.setState({
-      seconds: restPauseLength
+      time: this.secondsToTime(this.state.seconds)
     })
   }
 
-  componentDidMount() {
-    let timeLeftVar = this.secondsToTime(this.state.seconds)
 
-    this.setState({
-      time: timeLeftVar
-    })
-  }
 
   startTimer() {
     // if (this.timer == 0) {
       this.timer = setInterval(this.countDown, 1000)
     // }
-
-    console.log(this.props)
   }
 
   stopTimer() {
@@ -69,7 +61,8 @@ export default class Timer extends React.Component {
     clearInterval(this.timer)
 
     this.setState({
-      seconds: 15
+      time: this.secondsToTime(this.state.seconds),
+      seconds: this.props.pauseLength * 60
     })
   }
 
