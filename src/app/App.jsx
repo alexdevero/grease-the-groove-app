@@ -35,7 +35,8 @@ class App extends React.Component {
     e.preventDefault()
 
     this.setState({
-      isSettingsOpen: !this.state.isSettingsOpen
+      isSettingsOpen: !this.state.isSettingsOpen,
+      isTimerShown: false
     })
   }
 
@@ -43,6 +44,7 @@ class App extends React.Component {
     e.preventDefault()
 
     this.setState({
+      isSettingsOpen: false,
       isTimerShown: !this.state.isTimerShown
     })
   }
@@ -73,7 +75,7 @@ class App extends React.Component {
 
           <p>How long should the rest pause be (minutes)?</p>
 
-          <input type="number" placeholder={this.state.restPauseLength} onChange={(e) => this.updateRestPauseLength(e)} />
+          <input type="number" value={this.state.restPauseLength} onChange={(e) => this.updateRestPauseLength(e)} />
         </div>}
 
         {this.state.isTimerShown && <Timer pauseLength={this.state.restPauseLength} />}
