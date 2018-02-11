@@ -73,7 +73,7 @@ class App extends React.Component {
 
           <input type="number" placeholder={this.state.numOfSets} onChange={(e) => this.updateNumOfSets(e)} />
 
-          <p>How long should the rest pause be (minutes)?</p>
+          <p>How long should the rest pause be (in minutes)? You can use decimal numbers for seconds, i.e.: 0.2 for 12s.</p>
 
           <input type="number" value={this.state.restPauseLength} onChange={(e) => this.updateRestPauseLength(e)} />
         </div>}
