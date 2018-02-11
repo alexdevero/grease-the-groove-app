@@ -7,8 +7,9 @@ export default class Timer extends React.Component {
     super(props)
 
     this.state = {
-      time: {},
-      seconds: this.props.pauseLength * 60 // pauseLength is in minutes
+      isTimerRunning: false,
+      seconds: this.props.pauseLength * 60, // pauseLength is in minutes
+      time: {}
     }
 
     this.timer = 0
@@ -45,37 +46,49 @@ export default class Timer extends React.Component {
     })
   }
 
-
-
   startTimer() {
-    // if (this.timer == 0) {
+    if (!this.state.isTimerRunning) {
       this.timer = setInterval(this.countDown, 1000)
+    }
+
+    // if (this.timer === 0) {
+      // this.timer = setInterval(this.countDown, 1000)
     // }
   }
 
   stopTimer() {
     clearInterval(this.timer)
+
+    this.setState({
+      isTimerRunning: false
+    })
   }
 
   restartTimer() {
     clearInterval(this.timer)
 
+    let newTime = this.secondsToTime(this.props.pauseLength * 60)
+    let newSeconds = this.state.seconds - 1
+
     this.setState({
-      time: this.secondsToTime(this.state.seconds),
-      seconds: this.props.pauseLength * 60
+      isTimerRunning: false,
+      seconds: this.props.pauseLength * 60,
+      time: newTime
     })
   }
 
   countDown() {
     // Remove one second, set state so a re-render happens.
     let seconds = this.state.seconds - 1
+
     this.setState({
-      time: this.secondsToTime(seconds),
-      seconds: seconds
+      isTimerRunning: true,
+      seconds: seconds,
+      time: this.secondsToTime(seconds)
     })
 
     // Check if we're at zero.
-    if (seconds == 0) {
+    if (seconds === 0) {
       this.playSound()
 
       clearInterval(this.timer)
@@ -91,7 +104,7 @@ export default class Timer extends React.Component {
 
     setTimeout(() => {
       alert('Time for Grease the Groove!')
-    }, 1000)
+    }, 500)
   }
 
   render() {
