@@ -52,7 +52,7 @@
     "build": "webpack --config webpack.build.config.js",
     "dev": "webpack-dev-server --hot --host 0.0.0.0 --config=./webpack.dev.config.js",
     "package": "webpack --config webpack.build.config.js",
-    "postpackage": "electron-packager ./ --out=./builds --overwrite --icon=src/assets/grease-the-groove-icon.ico",
+    "postpackage": "electron-packager ./ --out=./builds --overwrite --icon=src/assets/grease-the-groove-icon",
     "prod": "webpack --config webpack.build.config.js && electron --noDevServer ."
   },
   "dependencies": {
