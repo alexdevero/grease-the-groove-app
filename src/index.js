@@ -28,8 +28,17 @@ injectGlobal`
   }
 
 	body {
-		font-family: 'Hind', serif;
+		font: 100% / 1.618 'Hind', serif;
 	}
+
+  * {
+    -webkit-user-select: none;
+  }
+
+  h1,
+  p {
+    cursor: default;
+  }
 `
 
 // Since we are using HtmlWebpackPlugin WITHOUT a template, we should create our own root node in the body element before rendering into it
