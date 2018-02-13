@@ -2,6 +2,8 @@ import React from 'react'
 
 import bellSound from './../../assets/sounds/definite.mp3'
 
+import { Text } from './Typography'
+
 export default class Timer extends React.Component {
   constructor(props) {
     super(props)
@@ -110,7 +112,7 @@ export default class Timer extends React.Component {
   render() {
     return(
       <div>
-        <p>{this.state.time.h}h {this.state.time.m}m {this.state.time.s}s</p>
+        <Text>{this.state.time.h}h {this.state.time.m}m {this.state.time.s}s</Text>
 
         <button onClick={this.startTimer}>Start</button>
 

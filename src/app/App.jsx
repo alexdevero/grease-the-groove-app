@@ -1,5 +1,7 @@
 import React from 'react'
 
+import { Heading, Text } from './components/Typography'
+import { ListUnstyled } from './components/Lists'
 import NotificationButton from './components/Notification'
 import Timer from './components/Timer'
 
@@ -60,29 +62,29 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <h1>Grease the Groove!</h1>
+        <Heading>Grease the Groove!</Heading>
 
-        <p>Are you ready to get stronger?</p>
+        <Text>Are you ready to get stronger?</Text>
 
         <a href="#" onClick={(e) => this.toggleSettings(e)}>Settings</a>
 
         <a href="#" onClick={(e) => this.toggleTimer(e)}>Timer</a>
 
         {this.state.isSettingsOpen && <div className="settings">
-          <p>How many sets do you want to do?</p>
+          <Text>How many sets do you want to do?</Text>
 
           <input type="number" placeholder={this.state.numOfSets} onChange={(e) => this.updateNumOfSets(e)} />
 
-          <p>How long should the rest pause be (in minutes)? You can use decimal numbers for seconds, i.e.: 0.2 for 12s.</p>
+          <Text>How long should the rest pause be (in minutes)? You can use decimal numbers for seconds, i.e.: 0.2 for 12s.</Text>
 
           <input type="number" value={this.state.restPauseLength} onChange={(e) => this.updateRestPauseLength(e)} />
         </div>}
 
         {this.state.isTimerShown && <Timer pauseLength={this.state.restPauseLength} />}
 
-        <ul>
+        <ListUnstyled>
           {this.generateSetsList()}
-        </ul>
+        </ListUnstyled>
 
         {/* <NotificationButton /> */}
       </div>
