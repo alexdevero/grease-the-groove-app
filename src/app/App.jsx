@@ -3,7 +3,6 @@ import React from 'react'
 import Checkbox from './components/Checkbox'
 import { Heading, Text } from './components/Typography'
 import { ListUnstyled } from './components/Lists'
-import NotificationButton from './components/Notification'
 import Timer from './components/Timer'
 
 class App extends React.Component {
@@ -82,8 +81,6 @@ class App extends React.Component {
         <ListUnstyled>
           {this.generateSetsList()}
         </ListUnstyled>
-
-        {/* <NotificationButton /> */}
       </div>
     )
   }
