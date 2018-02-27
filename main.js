@@ -11,6 +11,7 @@ const BrowserWindow = electron.BrowserWindow
 const path = require('path')
 const platform = require('os').platform()
 const url = require('url')
+const dialog = electron.dialog
 
 // Modules to create app tray icon
 const Menu = electron.Menu
@@ -55,6 +56,24 @@ function createWindow() {
     title: 'Grease the Groove',
     width: 375
   })
+  
+  // and load the index.html of the app.
+  let indexPath
+
+  if (dev && process.argv.indexOf('--noDevServer') === -1) {
+    indexPath = url.format({
+      protocol: 'http:',
+      host: 'localhost:8080',
+      pathname: 'index.html',
+      slashes: true
+    })
+  } else {
+    indexPath = url.format({
+      protocol: 'file:',
+      pathname: path.join(__dirname, 'dist', 'index.html'),
+      slashes: true
+    })
+  }
 
   // Create tray icon
   appIcon = new Tray(trayIcon)
@@ -95,24 +114,72 @@ function createWindow() {
   appIcon.on('click', () => {
     mainWindow.isVisible() ? mainWindow.hide() : mainWindow.show()
   })
-
-  // and load the index.html of the app.
-  let indexPath
-
-  if (dev && process.argv.indexOf('--noDevServer') === -1) {
-    indexPath = url.format({
-      protocol: 'http:',
-      host: 'localhost:8080',
-      pathname: 'index.html',
-      slashes: true
-    })
-  } else {
-    indexPath = url.format({
-      protocol: 'file:',
-      pathname: path.join(__dirname, 'dist', 'index.html'),
-      slashes: true
+  
+  // Function for clearing cache
+  const win = BrowserWindow.getAllWindows()[0]
+  const ses = win.webContents.session
+  const clearAppCache = () => {
+    ses.clearCache(() => {
+      dialog.showMessageBox({type: 'info', buttons: ['OK'], message: 'Cache cleared.'})
     })
   }
+  
+  // Template for menu
+  const menuTemplate = [
+    {
+      role: 'App',
+      submenu: [
+        {role: 'minimize'},
+        {role: 'close'}
+      ]
+    },
+    {
+      label: 'View',
+      submenu: [
+        {role: 'reload'},
+        {role: 'forcereload'},
+        {role: 'resetzoom'},
+        {role: 'zoomin'},
+        {role: 'zoomout'}
+      ]
+    },
+    {
+      label: 'Maintenance',
+      submenu: [
+        {
+          label: 'Clear cache',
+          click: () => {clearAppCache()}
+        },
+        {
+          label: 'Clear storage data',
+          click: () => {mainWindow.webContents.session.clearStorageData(dialog.showMessageBox({ type: 'info', buttons: ['OK'], message: 'Storage data cleaned.'}))}
+        },
+        {
+          label: 'Check cache size',
+          click: () => {mainWindow.webContents.session.getCacheSize((size) => dialog.showMessageBox({type: 'info', buttons: ['OK'], message: `Cache size is: ${size} bytes.`}))}
+        }
+      ]
+    },
+    {
+      role: 'help',
+      submenu: [
+        {
+          label: 'Learn More',
+          click: () => {require('electron').shell.openExternal('https://github.com/alexdevero/grease-the-groove-app')}
+        },
+        {
+          label: 'Author',
+          click: () => {require('electron').shell.openExternal('https://alexdevero.com')}
+        }
+      ]
+    }
+  ]
+
+  // Build menu from menuTemplate
+  const menu = Menu.buildFromTemplate(menuTemplate)
+  
+  // Set menu to menuTemplate
+  Menu.setApplicationMenu(menu)
 
   mainWindow.loadURL(indexPath)
 
