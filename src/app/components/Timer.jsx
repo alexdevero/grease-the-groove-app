@@ -4,6 +4,9 @@ import bellSound from './../../assets/sounds/definite.mp3'
 
 import { Text } from './Typography'
 
+// Import electron dialog module
+const dialog = require('electron').remote.dialog
+
 export default class Timer extends React.Component {
   constructor(props) {
     super(props)
@@ -49,13 +52,16 @@ export default class Timer extends React.Component {
   }
 
   startTimer() {
-    if (!this.state.isTimerRunning) {
+    if (!this.state.isTimerRunning && this.state.seconds !== 0) {      
+      // If timer is not at 0 and is not running, start countdown
+      this.timer = setInterval(this.countDown, 1000) 
+    } else {
+      // If we are on 0, restart timer
+      this.restartTimer()
+      
+      // Start new countdown
       this.timer = setInterval(this.countDown, 1000)
     }
-
-    // if (this.timer === 0) {
-      // this.timer = setInterval(this.countDown, 1000)
-    // }
   }
 
   stopTimer() {
@@ -89,11 +95,15 @@ export default class Timer extends React.Component {
       time: this.secondsToTime(seconds)
     })
 
-    // Check if we're at zero.
+    // Check if we're at 0.
     if (seconds === 0) {
       this.playSound()
 
       clearInterval(this.timer)
+      
+      this.setState({
+        isTimerRunning: false
+      })
     }
   }
 
@@ -104,9 +114,11 @@ export default class Timer extends React.Component {
 
     soundFile.play()
 
+    // Wait 0.25s so the sound plays first
     setTimeout(() => {
-      alert('Time for Grease the Groove!')
-    }, 500)
+      // Use electron native dialog box (notification box)
+      dialog.showMessageBox({type: 'info', buttons: ['OK'], message: 'Time for Grease the Groove!'})
+    }, 400)
   }
 
   render() {
