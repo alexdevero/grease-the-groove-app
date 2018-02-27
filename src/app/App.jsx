@@ -70,7 +70,7 @@ class App extends React.Component {
         {this.state.isSettingsOpen && <div className="settings">
           <Text>How many sets do you want to do?</Text>
 
-          <input type="number" placeholder={this.state.numOfSets} onChange={(e) => this.updateNumOfSets(e)} />
+          <input type="number" value={this.state.numOfSets} onChange={(e) => this.updateNumOfSets(e)} />
 
           <Text>How long should the rest pause be (in minutes)? You can use decimal numbers for seconds, i.e.: 0.2 for 12s.</Text>
 
