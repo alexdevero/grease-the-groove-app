@@ -51,9 +51,12 @@
   "scripts": {
     "build": "webpack --config webpack.build.config.js --mode production",
     "dev": "webpack-dev-server --hot --host 0.0.0.0 --config=./webpack.dev.config.js  --mode development",
-    "package": "webpack --config webpack.build.config.js",
-    "postpackage": "electron-packager ./ --out=./builds --overwrite --icon=src/assets/grease-the-groove-icon",
-    "prod": "webpack --config webpack.build.config.js && electron --noDevServer ."
+    "package:all": "npm run build && electron-packager ./ --out=./builds --overwrite --platform=all --icon=src/assets/grease-the-groove-icon",
+    "package:linux": "npm run build && electron-packager ./ --out=./builds --overwrite --platform=linux --icon=src/assets/grease-the-groove-icon",
+    "package:macappstore": "npm run build && electron-packager ./ --out=./builds --overwrite --platform=mas --icon=src/assets/grease-the-groove-icon",
+    "package:osx": "npm run build && electron-packager ./ --out=./builds --overwrite --platform=darwin --icon=src/assets/grease-the-groove-icon",
+    "package:win": "npm run build && electron-packager ./ --out=./builds --overwrite --platform=win32 --icon=src/assets/grease-the-groove-icon",
+    "prod": "npm run build && electron --noDevServer ."
   },
   "dependencies": {
     "electron": "^1.8.2",
@@ -68,7 +71,7 @@
     "babel-preset-react": "^6.24.1",
     "babili-webpack-plugin": "^0.1.2",
     "electron-packager": "^11.0.1",
-    "extract-text-webpack-plugin": "^3.0.2",
+    "extract-text-webpack-plugin": "^4.0.0-alpha.0",
     "file-loader": "^1.1.10",
     "html-webpack-plugin": "webpack-contrib/html-webpack-plugin",
     "webpack": "^4.0.1",
