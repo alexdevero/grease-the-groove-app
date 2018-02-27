@@ -1,5 +1,6 @@
 import React from 'react'
 
+import Checkbox from './components/Checkbox'
 import { Heading, Text } from './components/Typography'
 import { ListUnstyled } from './components/Lists'
 import NotificationButton from './components/Notification'
@@ -21,12 +22,8 @@ class App extends React.Component {
     let setsItems = []
 
     for(let i = 0; i<this.state.numOfSets; i++) {
-      setsItems.push(<li key={i}>
-        <label htmlFor={`set${i}`}>
-          <input id={`set${i}`} name={`set${i}`} type="checkbox"/>
-
-          <span>Set number {i+1}</span>
-        </label>
+      setsItems.push(<li key={i}>        
+        <Checkbox id={`set${i}`} label={`Set number ${i+1}`} />
       </li>)
     }
 
