@@ -50,13 +50,17 @@ if (process.platform === 'win32') {
 function createWindow() {
   // Create the browser window.
   mainWindow = new BrowserWindow({
+    'auto-hide-menu-bar': true,
     icon: trayIcon,
     height: 667,
     show: false,
     title: 'Grease the Groove',
     width: 375
   })
-  
+
+  // Auto-hide main app menu - show it after pressing 'Alt' key
+  mainWindow.setAutoHideMenuBar(true)
+
   // and load the index.html of the app.
   let indexPath
 
@@ -114,7 +118,7 @@ function createWindow() {
   appIcon.on('click', () => {
     mainWindow.isVisible() ? mainWindow.hide() : mainWindow.show()
   })
-  
+
   // Function for clearing cache
   const win = BrowserWindow.getAllWindows()[0]
   const ses = win.webContents.session
@@ -123,7 +127,7 @@ function createWindow() {
       dialog.showMessageBox({type: 'info', buttons: ['OK'], message: 'Cache cleared.'})
     })
   }
-  
+
   // Template for menu
   const menuTemplate = [
     {
@@ -177,7 +181,7 @@ function createWindow() {
 
   // Build menu from menuTemplate
   const menu = Menu.buildFromTemplate(menuTemplate)
-  
+
   // Set menu to menuTemplate
   Menu.setApplicationMenu(menu)
 
