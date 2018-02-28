@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 import { Heading, Text } from './Typography'
-import { Icon, IconWraper } from './Icon'
+import Nav from './Nav'
 
 const SettingsScreenWrapper = styled.section`
   position: absolute;
@@ -17,11 +17,7 @@ const SettingsScreenWrapper = styled.section`
 const ScreenSettings = (props) => {
   return(
     <SettingsScreenWrapper>
-      <nav style={{display: 'flex', width: '100%', alignItems: 'center', justifyContent: 'flex-end'}}>
-        <IconWraper href="#" onClick={props.toggleSettings}>
-          <Icon cross />
-        </IconWraper>
-      </nav>
+      <Nav toggleSettings={props.toggleSettings} hasCrossSettings />
 
       <Heading small>Settings</Heading>
 

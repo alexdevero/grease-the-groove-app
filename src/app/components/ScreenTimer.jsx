@@ -5,6 +5,7 @@ import bellSound from './../../assets/sounds/definite.mp3'
 
 import { Heading, Text } from './Typography'
 import { Icon, IconWraper } from './Icon'
+import Nav from './Nav'
 
 // Import electron dialog module
 const dialog = require('electron').remote.dialog
@@ -138,11 +139,7 @@ export default class ScreenTimer extends React.Component {
 
     return(
       <ScreenTimerWrapper>
-        <nav style={{display: 'flex', width: '100%', alignItems: 'center', justifyContent: 'flex-end'}}>
-          <IconWraper href="#" onClick={props.toggleTimer}>
-            <Icon cross />
-          </IconWraper>
-        </nav>
+        <Nav toggleTimer={props.toggleTimer} hasCrossTimer />
 
         <Heading small>Timer</Heading>
 

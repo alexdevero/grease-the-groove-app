@@ -5,6 +5,7 @@ import Checkbox from './components/Checkbox'
 import { Heading, Text } from './components/Typography'
 import { ListUnstyled } from './components/Lists'
 import { Icon, IconWraper } from './components/Icon'
+import Nav from './components/Nav'
 import ScreenSettings from './components/ScreenSettings'
 import ScreenTimer from './components/ScreenTimer'
 
@@ -65,15 +66,7 @@ class App extends React.Component {
   render() {
     return (
       <MainScreen>
-        <nav style={{display: 'flex', width: '100%', alignItems: 'center', justifyContent: 'flex-end'}}>
-          <IconWraper href="#" onClick={(e) => this.toggleTimer(e)}>
-            <Icon clock />
-          </IconWraper>
-
-          <IconWraper href="#" onClick={(e) => this.toggleSettings(e)}>
-            <Icon menu />
-          </IconWraper>
-        </nav>
+        <Nav toggleSettings={(e) => this.toggleSettings(e)} toggleTimer={(e) => this.toggleTimer(e)} hasTimer hasMenu/>
 
         <Heading>Grease the Groove!</Heading>
 
