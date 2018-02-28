@@ -44,8 +44,7 @@ class App extends React.Component {
 
     this.setState({
       isMainScreenShown: !this.state.isMainScreenShown,
-      isSettingsOpen: !this.state.isSettingsOpen,
-      isTimerShown: false
+      isSettingsOpen: !this.state.isSettingsOpen
     })
   }
 
@@ -53,8 +52,6 @@ class App extends React.Component {
     e.preventDefault()
 
     this.setState({
-      isMainScreenShown: true,
-      isSettingsOpen: false,
       isTimerShown: !this.state.isTimerShown
     })
   }
