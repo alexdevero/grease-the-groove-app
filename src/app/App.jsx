@@ -7,6 +7,8 @@ import ScreenMain from './components/ScreenMain'
 import ScreenSettings from './components/ScreenSettings'
 import ScreenTimer from './components/ScreenTimer'
 
+const dialog = require('electron').remote.dialog
+
 const AppWrapper = styled.main`
   position: relative;
 `
@@ -57,12 +59,16 @@ class App extends React.Component {
     let setsValue = document.querySelector('.settings-sets').value
 
     this.setState({numOfSets: setsValue})
+    
+    dialog.showMessageBox({type: 'info', buttons: ['OK'], message: 'Settings for sets have been updated!'})
   }
 
   updateRestPauseLength(e) {
     let restPauseValue = document.querySelector('.settings-pause').value
 
     this.setState({restPauseLength: restPauseValue})
+    
+    dialog.showMessageBox({type: 'info', buttons: ['OK'], message: 'Settings for rest pause have been updated!'})
   }
 
   render() {
