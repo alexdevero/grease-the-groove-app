@@ -6,10 +6,11 @@ import { Heading, Text } from './components/Typography'
 import { ListUnstyled } from './components/Lists'
 import { Icon, IconWraper } from './components/Icon'
 import Nav from './components/Nav'
+import ScreenMain from './components/ScreenMain'
 import ScreenSettings from './components/ScreenSettings'
 import ScreenTimer from './components/ScreenTimer'
 
-const MainScreen = styled.main`
+const AppWrapper = styled.main`
   position: relative;
 `
 
@@ -18,6 +19,7 @@ class App extends React.Component {
     super(props)
 
     this.state = {
+      isMainScreenShown: true,
       isSettingsOpen: false,
       isTimerShown: false,
       numOfSets: 6,
@@ -41,6 +43,7 @@ class App extends React.Component {
     e.preventDefault()
 
     this.setState({
+      isMainScreenShown: !this.state.isMainScreenShown,
       isSettingsOpen: !this.state.isSettingsOpen,
       isTimerShown: false
     })
@@ -50,38 +53,36 @@ class App extends React.Component {
     e.preventDefault()
 
     this.setState({
+      isMainScreenShown: true,
       isSettingsOpen: false,
       isTimerShown: !this.state.isTimerShown
     })
   }
 
   updateNumOfSets(e) {
-    this.setState({numOfSets: e.target.value})
+    let setsValue = document.querySelector('.settings-sets').value
+
+    this.setState({numOfSets: setsValue})
   }
 
   updateRestPauseLength(e) {
-    this.setState({restPauseLength: e.target.value})
+    let restPauseValue = document.querySelector('.settings-pause').value
+
+    this.setState({restPauseLength: restPauseValue})
   }
 
   render() {
     return (
-      <MainScreen>
-        <Nav toggleSettings={(e) => this.toggleSettings(e)} toggleTimer={(e) => this.toggleTimer(e)} hasTimer hasMenu/>
-
-        <Heading>Grease the Groove!</Heading>
-
-        <Text>Are you ready to get stronger?</Text>
-
-        <ListUnstyled>
-          {this.generateSetsList()}
-        </ListUnstyled>
+      <AppWrapper>
+        {/* Main screen */}
+        {this.state.isMainScreenShown && <ScreenMain listGenerator={this.generateSetsList()} isTimerShown={this.state.isTimerShown} toggleSettings={(e) => this.toggleSettings(e)} toggleTimer={(e) => this.toggleTimer(e)} restPauseLength={this.state.restPauseLength} />}
 
         {/* Timer screen */}
-        {this.state.isTimerShown && <ScreenTimer pauseLength={this.state.restPauseLength} toggleTimer={(e) => this.toggleTimer(e)} />}
+        {/* {this.state.isTimerShown && <ScreenTimer pauseLength={this.state.restPauseLength} toggleTimer={(e) => this.toggleTimer(e)} />} */}
 
         {/* Settings screen */}
         {this.state.isSettingsOpen && <ScreenSettings toggleSettings={(e) => this.toggleSettings(e)} changeSets={(e) => this.updateNumOfSets(e)} changePauseLength={(e) => this.updateRestPauseLength(e)} numOfSets={this.state.numOfSets} restPauseLength={this.state.restPauseLength} />}
-      </MainScreen>
+      </AppWrapper>
     )
   }
 }

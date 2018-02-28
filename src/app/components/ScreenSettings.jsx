@@ -23,11 +23,15 @@ const ScreenSettings = (props) => {
 
       <Text>How many sets do you want to do?</Text>
 
-      <input type="number" value={props.numOfSets} onChange={props.changeSets} />
+      <input className="settings-sets" type="number" defaultValue={props.numOfSets} />
+
+      <button onClick={props.changeSets}>Save</button>
 
       <Text>How long should the rest pause be (in minutes)? You can use decimal numbers for seconds, i.e.: 0.2 for 12s.</Text>
 
-      <input type="number" value={props.restPauseLength} onChange={props.changePauseLength} />
+      <input className="settings-pause" type="number" defaultValue={props.restPauseLength} />
+
+      <button onClick={props.changePauseLength}>Save</button>
     </SettingsScreenWrapper>
   )
 }

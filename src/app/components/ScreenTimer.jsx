@@ -11,13 +11,13 @@ import Nav from './Nav'
 const dialog = require('electron').remote.dialog
 
 const ScreenTimerWrapper = styled.section`
-  position: absolute;
+  ${'' /* position: absolute;
   top: 0;
   left: 0;
   z-index: 2;
   width: 100%;
   height: 100%;
-  background-color: #fff;
+  background-color: #fff; */}
 `
 
 export default class ScreenTimer extends React.Component {
@@ -139,7 +139,7 @@ export default class ScreenTimer extends React.Component {
 
     return(
       <ScreenTimerWrapper>
-        <Nav toggleTimer={props.toggleTimer} hasCrossTimer />
+        {/* <Nav toggleTimer={props.toggleTimer} hasCrossTimer /> */}
 
         <Heading small>Timer</Heading>
 
