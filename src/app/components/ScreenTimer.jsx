@@ -1,13 +1,25 @@
 import React from 'react'
+import styled from 'styled-components'
 
 import bellSound from './../../assets/sounds/definite.mp3'
 
-import { Text } from './Typography'
+import { Heading, Text } from './Typography'
+import { Icon, IconWraper } from './Icon'
 
 // Import electron dialog module
 const dialog = require('electron').remote.dialog
 
-export default class Timer extends React.Component {
+const ScreenTimerWrapper = styled.section`
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+`
+
+export default class ScreenTimer extends React.Component {
   constructor(props) {
     super(props)
 
@@ -52,13 +64,13 @@ export default class Timer extends React.Component {
   }
 
   startTimer() {
-    if (!this.state.isTimerRunning && this.state.seconds !== 0) {      
+    if (!this.state.isTimerRunning && this.state.seconds !== 0) {
       // If timer is not at 0 and is not running, start countdown
-      this.timer = setInterval(this.countDown, 1000) 
+      this.timer = setInterval(this.countDown, 1000)
     } else {
       // If we are on 0, restart timer
       this.restartTimer()
-      
+
       // Start new countdown
       this.timer = setInterval(this.countDown, 1000)
     }
@@ -100,7 +112,7 @@ export default class Timer extends React.Component {
       this.playSound()
 
       clearInterval(this.timer)
-      
+
       this.setState({
         isTimerRunning: false
       })
@@ -122,8 +134,18 @@ export default class Timer extends React.Component {
   }
 
   render() {
+    const props = this.props
+
     return(
-      <div>
+      <ScreenTimerWrapper>
+        <nav style={{display: 'flex', width: '100%', alignItems: 'center', justifyContent: 'flex-end'}}>
+          <IconWraper href="#" onClick={props.toggleTimer}>
+            <Icon cross />
+          </IconWraper>
+        </nav>
+
+        <Heading small>Timer</Heading>
+
         <Text>{this.state.time.h}h {this.state.time.m}m {this.state.time.s}s</Text>
 
         <button onClick={this.startTimer}>Start</button>
@@ -131,7 +153,7 @@ export default class Timer extends React.Component {
         <button onClick={this.restartTimer}>Reset</button>
 
         <button onClick={this.stopTimer}>Stop</button>
-      </div>
+      </ScreenTimerWrapper>
     )
   }
 }
