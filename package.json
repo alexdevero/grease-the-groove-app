@@ -50,7 +50,7 @@
   "main": "main.js",
   "scripts": {
     "build": "webpack --config webpack.build.config.js --mode production",
-    "dev": "webpack-dev-server --hot --host 0.0.0.0 --config=./webpack.dev.config.js  --mode development",
+    "start": "webpack-dev-server --hot --host 0.0.0.0 --config=./webpack.dev.config.js  --mode development",
     "package:all": "npm run build && electron-packager ./ --out=./builds --overwrite --platform=all --icon=src/assets/grease-the-groove-icon",
     "package:linux": "npm run build && electron-packager ./ --out=./builds --overwrite --platform=linux --icon=src/assets/grease-the-groove-icon",
     "package:macappstore": "npm run build && electron-packager ./ --out=./builds --overwrite --platform=mas --icon=src/assets/grease-the-groove-icon",
