@@ -1,9 +1,16 @@
 import React from 'react'
+import styled from 'styled-components'
 
 import Checkbox from './components/Checkbox'
 import { Heading, Text } from './components/Typography'
 import { ListUnstyled } from './components/Lists'
-import Timer from './components/Timer'
+import { Icon, IconWraper } from './components/Icon'
+import ScreenSettings from './components/ScreenSettings'
+import ScreenTimer from './components/ScreenTimer'
+
+const MainScreen = styled.main`
+  position: relative;
+`
 
 class App extends React.Component {
   constructor(props) {
@@ -21,7 +28,7 @@ class App extends React.Component {
     let setsItems = []
 
     for(let i = 0; i<this.state.numOfSets; i++) {
-      setsItems.push(<li key={i}>        
+      setsItems.push(<li key={i}>
         <Checkbox id={`set${i}`} label={`Set number ${i+1}`} />
       </li>)
     }
@@ -57,31 +64,31 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
+      <MainScreen>
+        <nav style={{display: 'flex', width: '100%', alignItems: 'center', justifyContent: 'flex-end'}}>
+          <IconWraper href="#" onClick={(e) => this.toggleTimer(e)}>
+            <Icon clock />
+          </IconWraper>
+
+          <IconWraper href="#" onClick={(e) => this.toggleSettings(e)}>
+            <Icon menu />
+          </IconWraper>
+        </nav>
+
         <Heading>Grease the Groove!</Heading>
 
         <Text>Are you ready to get stronger?</Text>
 
-        <a href="#" onClick={(e) => this.toggleSettings(e)}>Settings</a>
-
-        <a href="#" onClick={(e) => this.toggleTimer(e)}>Timer</a>
-
-        {this.state.isSettingsOpen && <div className="settings">
-          <Text>How many sets do you want to do?</Text>
-
-          <input type="number" value={this.state.numOfSets} onChange={(e) => this.updateNumOfSets(e)} />
-
-          <Text>How long should the rest pause be (in minutes)? You can use decimal numbers for seconds, i.e.: 0.2 for 12s.</Text>
-
-          <input type="number" value={this.state.restPauseLength} onChange={(e) => this.updateRestPauseLength(e)} />
-        </div>}
-
-        {this.state.isTimerShown && <Timer pauseLength={this.state.restPauseLength} />}
-
         <ListUnstyled>
           {this.generateSetsList()}
         </ListUnstyled>
-      </div>
+
+        {/* Timer screen */}
+        {this.state.isTimerShown && <ScreenTimer pauseLength={this.state.restPauseLength} toggleTimer={(e) => this.toggleTimer(e)} />}
+
+        {/* Settings screen */}
+        {this.state.isSettingsOpen && <ScreenSettings toggleSettings={(e) => this.toggleSettings(e)} changeSets={(e) => this.updateNumOfSets(e)} changePauseLength={(e) => this.updateRestPauseLength(e)} numOfSets={this.state.numOfSets} restPauseLength={this.state.restPauseLength} />}
+      </MainScreen>
     )
   }
 }
