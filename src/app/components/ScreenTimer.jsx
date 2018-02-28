@@ -18,6 +18,8 @@ const ScreenTimerWrapper = styled.section`
   width: 100%;
   height: 100%;
   background-color: #fff; */}
+  margin-top: 16px;
+  margin-bottom: 23px;
 `
 
 export default class ScreenTimer extends React.Component {
