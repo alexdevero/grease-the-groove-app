@@ -9,7 +9,15 @@ export const Heading = styled.h1`
   ${props => props.small && css`
     font-size: 21px;
   `}
+  
+  ${props => props.smallest && css`
+    font-size: 18px;
+  `}
 
+  & + h1 {
+    margin-top: 16px;
+  }
+  
   & + p {
     margin-top: 8px;
   }
