@@ -27,7 +27,7 @@ const ScreenSettings = (props) => {
     <SettingsScreenWrapper>
       <Nav toggleSettings={props.toggleSettings} hasCrossSettings />
 
-      <Heading small>App settings</Heading>
+      <Heading>App settings</Heading>
       
       <Heading smallest>Sets</Heading>
 
