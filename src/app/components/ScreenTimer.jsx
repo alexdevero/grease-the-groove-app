@@ -6,21 +6,10 @@ import bellSound from './../../assets/sounds/definite.mp3'
 import { Heading, Text } from './Typography'
 import { Icon, IconWraper } from './Icon'
 import Nav from './Nav'
+import { ScreenWrapper } from './Wrappers'
 
 // Import electron dialog module
 const dialog = require('electron').remote.dialog
-
-const ScreenTimerWrapper = styled.section`
-  ${'' /* position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 2;
-  width: 100%;
-  height: 100%;
-  background-color: #fff; */}
-  margin-top: 16px;
-  margin-bottom: 23px;
-`
 
 export default class ScreenTimer extends React.Component {
   constructor(props) {
@@ -140,7 +129,7 @@ export default class ScreenTimer extends React.Component {
     const props = this.props
 
     return(
-      <ScreenTimerWrapper>
+      <ScreenWrapper static>
         {/* <Nav toggleTimer={props.toggleTimer} hasCrossTimer /> */}
 
         <Heading small>Timer</Heading>
@@ -152,7 +141,7 @@ export default class ScreenTimer extends React.Component {
         <button onClick={this.restartTimer}>Reset</button>
 
         <button onClick={this.stopTimer}>Stop</button>
-      </ScreenTimerWrapper>
+      </ScreenWrapper>
     )
   }
 }

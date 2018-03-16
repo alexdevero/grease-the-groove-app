@@ -2,28 +2,11 @@ import React from 'react'
 import styled, { css } from 'styled-components'
 
 import { Heading, Text } from './Typography'
-
-const SettingsWelcomeWrapper = styled.section`
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 2;
-  width: 100%;
-  height: 100%;
-  background-color: #fff;
-`
-
-const InputWrapper = styled.div`
-  margin-top: 8px;
-
-  ${props => props.first && css`
-    margin-bottom: 28px;
-  `}
-`
+import { InputWrapper, ScreenWrapper } from './Wrappers'
 
 const ScreenWelcome = (props) => {
   return(
-    <SettingsWelcomeWrapper>
+    <ScreenWrapper absolute>
       <Heading>Grease the Groove!</Heading>
 
       <Text>How many sets do you want to do?</Text>
@@ -41,7 +24,7 @@ const ScreenWelcome = (props) => {
 
         <button onClick={props.saveSettings}>Start!</button>
       </InputWrapper>
-    </SettingsWelcomeWrapper>
+    </ScreenWrapper>
   )
 }
 
