@@ -6,6 +6,7 @@ import Nav from './components/Nav'
 import ScreenMain from './components/ScreenMain'
 import ScreenSettings from './components/ScreenSettings'
 import ScreenTimer from './components/ScreenTimer'
+import ScreenWelcome from './components/ScreenWelcome'
 
 const dialog = require('electron').remote.dialog
 
@@ -18,9 +19,10 @@ class App extends React.Component {
     super(props)
 
     this.state = {
-      isMainScreenShown: true,
+      isMainScreenShown: false,
       isSettingsOpen: false,
       isTimerShown: false,
+      isWelcomeScreenShown: true,
       numOfSets: 6,
       restPauseLength: 90
     }
@@ -59,7 +61,7 @@ class App extends React.Component {
     let setsValue = document.querySelector('.settings-sets').value
 
     this.setState({numOfSets: setsValue})
-    
+
     dialog.showMessageBox({type: 'info', buttons: ['OK'], message: 'Settings for sets have been updated!'})
   }
 
@@ -67,8 +69,20 @@ class App extends React.Component {
     let restPauseValue = document.querySelector('.settings-pause').value
 
     this.setState({restPauseLength: restPauseValue})
-    
+
     dialog.showMessageBox({type: 'info', buttons: ['OK'], message: 'Settings for rest pause have been updated!'})
+  }
+
+  saveSettings(e) {
+    let restPauseValue = document.querySelector('.settings-pause').value
+    let setsValue = document.querySelector('.settings-sets').value
+
+    this.setState({
+      isMainScreenShown: true,
+      isWelcomeScreenShown: false,
+      numOfSets: setsValue,
+      restPauseLength: restPauseValue
+    })
   }
 
   render() {
@@ -82,6 +96,9 @@ class App extends React.Component {
 
         {/* Settings screen */}
         {this.state.isSettingsOpen && <ScreenSettings toggleSettings={(e) => this.toggleSettings(e)} changeSets={(e) => this.updateNumOfSets(e)} changePauseLength={(e) => this.updateRestPauseLength(e)} numOfSets={this.state.numOfSets} restPauseLength={this.state.restPauseLength} />}
+
+        {/* Welcome screen */}
+        {this.state.isWelcomeScreenShown && <ScreenWelcome numOfSets={this.state.numOfSets} restPauseLength={this.state.restPauseLength} saveSettings={(e) => this.saveSettings(e)} />}
       </AppWrapper>
     )
   }
