@@ -138,11 +138,11 @@ export default class ScreenTimer extends React.Component {
         <Text>{this.state.time.h}h {this.state.time.m}m {this.state.time.s}s</Text>
 
         <ButtonWrapper>
-          <Button onClick={this.startTimer} first>Start</Button>
+          <Button onClick={this.restartTimer} first><Icon reset /></Button>
 
-          <Button onClick={this.restartTimer} middle>Reset</Button>
+          <Button onClick={this.startTimer} middle><Icon play /></Button>
 
-          <Button onClick={this.stopTimer} last>Stop</Button>
+          <Button onClick={this.stopTimer} last><Icon stop /></Button>
         </ButtonWrapper>
       </ScreenWrapper>
     )
