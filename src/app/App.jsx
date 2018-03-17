@@ -8,6 +8,8 @@ import ScreenSettings from './components/ScreenSettings'
 import ScreenTimer from './components/ScreenTimer'
 import ScreenWelcome from './components/ScreenWelcome'
 
+import tadaSound from './../assets/sounds/ta-da.mp3'
+
 const dialog = require('electron').remote.dialog
 
 const AppWrapper = styled.main`
@@ -32,7 +34,7 @@ class App extends React.Component {
     let setsItems = []
 
     for(let i = 0; i<this.state.numOfSets; i++) {
-      setsItems.push(<li key={i}>
+      setsItems.push(<li key={i} onClick={(e) => this.countCheckedSets(e)}>
         <Checkbox id={`set${i}`} label={`Set number ${i+1}`} />
       </li>)
     }
@@ -83,6 +85,34 @@ class App extends React.Component {
       numOfSets: setsValue,
       restPauseLength: restPauseValue
     })
+  }
+
+  countCheckedSets(e) {
+    // Prevent event firing twice
+    e.preventDefault()
+
+    // Toggle checkbox
+    let checkbox = e.currentTarget.querySelector('[type=checkbox]')
+    checkbox.checked = checkbox.checked ? false : true
+
+    // Check number of checked checkboxes
+    let checkboxesArray = document.querySelectorAll('[type=checkbox]:checked')
+
+    // If number of completed sets matches number of sets
+    // show success message and play ta da sound
+    if (checkboxesArray.length === parseInt(this.state.numOfSets)) {
+      // setTimeout(() => {
+      //   let soundFile = new Audio(tadaSound);
+      //
+      //   soundFile.volume = 0.5 // 0.5 is half volume
+      //
+      //   soundFile.play()
+      // }, 450)
+
+      setTimeout(() => {
+        dialog.showMessageBox({type: 'info', buttons: ['Close'], message: 'Congratulations! You finished all sets you had for today!'})
+      }, 600)
+    }
   }
 
   render() {
