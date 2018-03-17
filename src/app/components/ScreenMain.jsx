@@ -12,9 +12,9 @@ const ScreenMain = (props) => {
     <ScreenWrapper absolute>
       <Nav toggleSettings={props.toggleSettings} toggleTimer={props.toggleTimer} hasTimer hasMenu />
 
-      <Heading>Grease the Groove!</Heading>
+      {/* <Heading>Grease the Groove!</Heading> */}
 
-      <Text>Are you ready to get stronger?</Text>
+      {/* <Text>Are you ready to get stronger?</Text> */}
 
       {/* Timer screen */}
       {props.isTimerShown && <ScreenTimer pauseLength={props.restPauseLength} />}
