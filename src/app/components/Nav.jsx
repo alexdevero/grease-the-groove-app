@@ -14,15 +14,11 @@ const NavWrapper = styled.nav`
 const Nav = (props) => {
   return(
     <NavWrapper hasCrossSettings={props.hasCrossSettings}>
-      {props.hasMenu && <IconWraper href="#" onClick={props.toggleSettings}>
+      {props.hasMenu && <IconWraper href="#" onClick={props.openSettings}>
         <Icon menu />
       </IconWraper>}
 
-      {props.hasCrossSettings && <IconWraper href="#" onClick={props.toggleSettings}>
-        <Icon cross />
-      </IconWraper>}
-
-      {props.hasCrossTimer && <IconWraper href="#" onClick={props.toggleTimer}>
+      {props.hasCrossSettings && <IconWraper href="#" onClick={props.closeSettings}>
         <Icon cross />
       </IconWraper>}
     </NavWrapper>
