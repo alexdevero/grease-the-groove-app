@@ -20,7 +20,7 @@
 Electron app to help you practice "[Grease the Groove]" method to achieve your goals and get stronger 💪!
 
 <p align="center">
-  <img src="https://cdn.rawgit.com/alexdevero/instagram-desktop-uploader/master/docs/grease-the-groove-app.png" width="800">
+  <img src="https://cdn.rawgit.com/alexdevero/grease-the-groove-app/master/docs/grease-the-groove-app.png" width="359">
   <br>
   <br>
 </p>
