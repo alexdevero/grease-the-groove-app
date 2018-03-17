@@ -14,5 +14,6 @@ export const ScreenWrapper = styled.section`
   ${props => props.static && css`
     margin-top: 16px;
     margin-bottom: 23px;
+    text-align: center;
   `}
 `
