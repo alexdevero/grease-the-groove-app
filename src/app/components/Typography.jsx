@@ -15,8 +15,13 @@ export const Heading = styled.h1`
     font-size: 21px;
   `}
 
+  ${props => props.top && css`
+    margin-top: 21px;
+  `}
+
   ${props => props.smallest && css`
     font-size: 18px;
+    color: hsl(0, 0%, 30%);
   `}
 
   & + h1 {
@@ -33,7 +38,18 @@ export const Text = styled.p`
   margin-bottom: 0;
   color: hsl(0, 0%, 50%);
 
-  & + & {
+  & + &,
+  & + h1 {
     margin-top: 8px;
   }
+`
+
+export const SpanBig = styled.span`
+  font-size: 48px;
+  color: hsl(0, 0%, 50%);
+`
+
+export const SpanSmall = styled.span`
+  font-size: 21px;
+  color: hsl(0, 0%, 80%);
 `

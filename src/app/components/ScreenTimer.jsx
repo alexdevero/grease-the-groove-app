@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import bellSound from './../../assets/sounds/definite.mp3'
 
 import { Button, ButtonWrapper } from './Button'
-import { Heading, Text } from './Typography'
+import { Heading, SpanBig, SpanSmall, Text } from './Typography'
 import { Icon, IconWraper } from './Icon'
 import Nav from './Nav'
 import { ScreenWrapper } from './Wrappers'
@@ -133,9 +133,17 @@ export default class ScreenTimer extends React.Component {
       <ScreenWrapper static>
         {/* <Nav toggleTimer={props.toggleTimer} hasCrossTimer /> */}
 
-        <Heading small>Timer</Heading>
+        {/* <Heading small>Timer</Heading> */}
 
-        <Text>{this.state.time.h}h {this.state.time.m}m {this.state.time.s}s</Text>
+        <Text>
+          <SpanBig>{this.state.time.h}</SpanBig>
+          <SpanSmall>hr</SpanSmall>
+          {' : '}
+          <SpanBig>{this.state.time.m}</SpanBig>
+          <SpanSmall>min</SpanSmall>
+          {' : '}
+          <SpanBig>{this.state.time.s}</SpanBig>
+          <SpanSmall>sec</SpanSmall></Text>
 
         <ButtonWrapper>
           <Button onClick={this.restartTimer} first><Icon reset /></Button>
