@@ -1,21 +1,5 @@
 import styled, { css } from 'styled-components'
 
-export const InputWrapper = styled.div`
-  margin-top: 8px;
-
-  ${props => props.first && css`
-    margin-bottom: 28px;
-  `}
-
-  ${props => props.last && css`
-    margin-top: 18px;
-  `}
-
-  ${props => props.center && css`
-    text-align: center;
-  `}
-`
-
 export const ScreenWrapper = styled.section`
   ${props => props.absolute && css`
     position: absolute;
