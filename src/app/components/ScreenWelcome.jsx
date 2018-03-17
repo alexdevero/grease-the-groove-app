@@ -1,13 +1,14 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
 
+import { Button, ButtonWrapper } from './Button'
 import { Heading, Text } from './Typography'
 import { InputWrapper, ScreenWrapper } from './Wrappers'
 
 const ScreenWelcome = (props) => {
   return(
     <ScreenWrapper absolute>
-      <Heading>Grease the Groove!</Heading>
+      <Heading center>Grease the Groove!</Heading>
 
       <Text>How many sets do you want to do?</Text>
 
@@ -23,9 +24,9 @@ const ScreenWelcome = (props) => {
         <input className="settings-pause" type="number" defaultValue={props.restPauseLength} />
       </InputWrapper>
 
-      <InputWrapper center last>
-        <button onClick={props.saveSettings}>Start!</button>
-      </InputWrapper>
+      <ButtonWrapper center>
+        <Button onClick={props.saveSettings}>Start!</Button>
+      </ButtonWrapper>
     </ScreenWrapper>
   )
 }

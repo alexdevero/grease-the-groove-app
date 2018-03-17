@@ -3,6 +3,7 @@ import styled from 'styled-components'
 
 import bellSound from './../../assets/sounds/definite.mp3'
 
+import { Button, ButtonWrapper } from './Button'
 import { Heading, Text } from './Typography'
 import { Icon, IconWraper } from './Icon'
 import Nav from './Nav'
@@ -136,11 +137,13 @@ export default class ScreenTimer extends React.Component {
 
         <Text>{this.state.time.h}h {this.state.time.m}m {this.state.time.s}s</Text>
 
-        <button onClick={this.startTimer}>Start</button>
+        <ButtonWrapper>
+          <Button onClick={this.startTimer} first>Start</Button>
 
-        <button onClick={this.restartTimer}>Reset</button>
+          <Button onClick={this.restartTimer} middle>Reset</Button>
 
-        <button onClick={this.stopTimer}>Stop</button>
+          <Button onClick={this.stopTimer} last>Stop</Button>
+        </ButtonWrapper>
       </ScreenWrapper>
     )
   }

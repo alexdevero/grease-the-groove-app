@@ -1,6 +1,7 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
 
+import { Button } from './Button'
 import { Heading, Text } from './Typography'
 import Nav from './Nav'
 import { InputWrapper, ScreenWrapper } from './Wrappers'
@@ -19,7 +20,7 @@ const ScreenSettings = (props) => {
       <InputWrapper first>
         <input className="settings-sets" type="number" defaultValue={props.numOfSets} />
 
-        <button onClick={props.changeSets}>Save</button>
+        <Button onClick={props.changeSets} last>Save</Button>
       </InputWrapper>
 
       <Heading smallest>Rest pause</Heading>
@@ -29,7 +30,7 @@ const ScreenSettings = (props) => {
       <InputWrapper>
         <input className="settings-pause" type="number" defaultValue={props.restPauseLength} />
 
-        <button onClick={props.changePauseLength}>Save</button>
+        <Button onClick={props.changePauseLength} last>Save</Button>
       </InputWrapper>
     </ScreenWrapper>
   )
