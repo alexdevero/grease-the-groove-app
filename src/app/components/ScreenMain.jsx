@@ -10,7 +10,7 @@ import { ScreenWrapper } from './Wrappers'
 const ScreenMain = (props) => {
   return(
     <ScreenWrapper absolute>
-      <Nav toggleSettings={props.toggleSettings} toggleTimer={props.toggleTimer} hasTimer hasMenu />
+      <Nav closeSettings={props.closeSettings} openSettings={props.openSettings} hasMenu />
 
       {/* <Heading>Grease the Groove!</Heading> */}
 

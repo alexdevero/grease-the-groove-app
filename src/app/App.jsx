@@ -22,6 +22,7 @@ class App extends React.Component {
 
     this.state = {
       isMainScreenShown: false,
+      isOnboarding: true,
       isSettingsOpen: false,
       isTimerShown: true,
       isWelcomeScreenShown: true,
@@ -42,20 +43,23 @@ class App extends React.Component {
     return setsItems
   }
 
-  toggleSettings(e) {
+  openSettings(e) {
     e.preventDefault()
 
     this.setState({
-      isMainScreenShown: !this.state.isMainScreenShown,
-      isSettingsOpen: !this.state.isSettingsOpen
+      isMainScreenShown: false,
+      isSettingsOpen: !this.state.isSettingsOpen,
+      isWelcomeScreenShown: false
     })
   }
 
-  toggleTimer(e) {
+  closeSettings(e) {
     e.preventDefault()
 
     this.setState({
-      isTimerShown: !this.state.isTimerShown
+      isMainScreenShown: true,
+      isSettingsOpen: false,
+      isOnboarding: false
     })
   }
 
@@ -81,7 +85,8 @@ class App extends React.Component {
 
     this.setState({
       isMainScreenShown: true,
-      isWelcomeScreenShown: false,
+      isSettingsOpen: false,
+      isOnboarding: false,
       numOfSets: setsValue,
       restPauseLength: restPauseValue
     })
@@ -119,16 +124,26 @@ class App extends React.Component {
     return (
       <AppWrapper>
         {/* Main screen */}
-        {this.state.isMainScreenShown && <ScreenMain listGenerator={this.generateSetsList()} isTimerShown={this.state.isTimerShown} toggleSettings={(e) => this.toggleSettings(e)} toggleTimer={(e) => this.toggleTimer(e)} restPauseLength={this.state.restPauseLength} />}
+        {this.state.isMainScreenShown && <ScreenMain listGenerator={this.generateSetsList()} isTimerShown={this.state.isTimerShown} closeSettings={(e) => this.closeSettings(e)}  openSettings={(e) => this.openSettings(e)} restPauseLength={this.state.restPauseLength} />}
 
         {/* Timer screen */}
         {/* {this.state.isTimerShown && <ScreenTimer pauseLength={this.state.restPauseLength} toggleTimer={(e) => this.toggleTimer(e)} />} */}
 
         {/* Settings screen */}
-        {this.state.isSettingsOpen && <ScreenSettings toggleSettings={(e) => this.toggleSettings(e)} changeSets={(e) => this.updateNumOfSets(e)} changePauseLength={(e) => this.updateRestPauseLength(e)} numOfSets={this.state.numOfSets} restPauseLength={this.state.restPauseLength} />}
+        {
+          this.state.isSettingsOpen && <ScreenSettings
+            closeSettings={(e) => this.closeSettings(e)}
+            changeSets={(e) => this.updateNumOfSets(e)}
+            changePauseLength={(e) => this.updateRestPauseLength(e)}
+            numOfSets={this.state.numOfSets}
+            restPauseLength={this.state.restPauseLength}
+            isOnboarding={this.state.isOnboarding}
+            saveSettings={(e) => this.saveSettings(e)}
+          />
+        }
 
         {/* Welcome screen */}
-        {this.state.isWelcomeScreenShown && <ScreenWelcome numOfSets={this.state.numOfSets} restPauseLength={this.state.restPauseLength} saveSettings={(e) => this.saveSettings(e)} />}
+        {this.state.isWelcomeScreenShown && <ScreenWelcome openSettings={(e) => this.openSettings(e)} />}
       </AppWrapper>
     )
   }

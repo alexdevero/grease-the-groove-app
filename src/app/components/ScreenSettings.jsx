@@ -1,7 +1,7 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
 
-import { Button } from './Button'
+import { Button, ButtonWrapper } from './Button'
 import { Heading, Text } from './Typography'
 import Nav from './Nav'
 import { Input, InputWrapper } from './Input'
@@ -10,7 +10,7 @@ import { ScreenWrapper } from './Wrappers'
 const ScreenSettings = (props) => {
   return(
     <ScreenWrapper absolute>
-      <Nav toggleSettings={props.toggleSettings} hasCrossSettings />
+      <Nav closeSettings={props.closeSettings} hasCrossSettings />
 
       <Heading>App settings</Heading>
 
@@ -21,7 +21,7 @@ const ScreenSettings = (props) => {
       <InputWrapper first>
         <Input className="settings-sets" type="number" defaultValue={props.numOfSets} />
 
-        <Button onClick={props.changeSets} last>Save</Button>
+        {!props.isOnboarding && <Button onClick={props.changeSets} last>Save</Button>}
       </InputWrapper>
 
       <Heading smallest>Rest pause</Heading>
@@ -31,8 +31,12 @@ const ScreenSettings = (props) => {
       <InputWrapper>
         <Input className="settings-pause" type="number" defaultValue={props.restPauseLength} />
 
-        <Button onClick={props.changePauseLength} last>Save</Button>
+        {!props.isOnboarding && <Button onClick={props.changePauseLength} last>Save</Button>}
       </InputWrapper>
+
+      {props.isOnboarding && <ButtonWrapper center>
+        <Button onClick={props.saveSettings}>Get started!</Button>
+      </ButtonWrapper>}
     </ScreenWrapper>
   )
 }
