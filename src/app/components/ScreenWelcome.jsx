@@ -21,7 +21,9 @@ const ScreenWelcome = (props) => {
 
       <InputWrapper>
         <input className="settings-pause" type="number" defaultValue={props.restPauseLength} />
+      </InputWrapper>
 
+      <InputWrapper center last>
         <button onClick={props.saveSettings}>Start!</button>
       </InputWrapper>
     </ScreenWrapper>

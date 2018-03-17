@@ -6,6 +6,14 @@ export const InputWrapper = styled.div`
   ${props => props.first && css`
     margin-bottom: 28px;
   `}
+
+  ${props => props.last && css`
+    margin-top: 18px;
+  `}
+
+  ${props => props.center && css`
+    text-align: center;
+  `}
 `
 
 export const ScreenWrapper = styled.section`
