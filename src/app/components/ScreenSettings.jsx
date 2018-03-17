@@ -35,7 +35,7 @@ const ScreenSettings = (props) => {
       </InputWrapper>
 
       {props.isOnboarding && <ButtonWrapper center>
-        <Button onClick={props.saveSettings}>Save & start!</Button>
+        <Button text onClick={props.saveSettings}>Save & start!</Button>
       </ButtonWrapper>}
     </ScreenWrapper>
   )

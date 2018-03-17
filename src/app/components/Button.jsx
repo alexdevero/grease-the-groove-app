@@ -19,6 +19,10 @@ export const Button = styled.button`
     background-color: hsl(200.5, 100%, 40%);
   }
 
+  ${props => props. text && css`
+    font-size: 15px;
+  `}
+
   ${props => props.first && css`
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;

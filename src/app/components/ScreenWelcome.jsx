@@ -24,7 +24,7 @@ const ScreenWelcome = (props) => {
       <Text>Are you ready to get stronger?</Text>
 
       <ButtonWrapper center>
-        <Button onClick={props.openSettings}>Start</Button>
+        <Button text onClick={props.openSettings}>Get started</Button>
       </ButtonWrapper>
     </ScreenWrapper>
   )
