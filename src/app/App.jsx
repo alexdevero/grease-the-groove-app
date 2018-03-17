@@ -23,7 +23,7 @@ class App extends React.Component {
     this.state = {
       isMainScreenShown: false,
       isSettingsOpen: false,
-      isTimerShown: false,
+      isTimerShown: true,
       isWelcomeScreenShown: true,
       numOfSets: 6,
       restPauseLength: 90

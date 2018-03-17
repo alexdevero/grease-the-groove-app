@@ -8,20 +8,20 @@ const NavWrapper = styled.nav`
   padding-bottom: 12px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
   width: 100%;
-  
-  ${props => props.hasCrossSettings && css`
+
+  ${'' /* ${props => props.hasCrossSettings && css`
     justify-content: flex-end;
-  `}
+  `} */}
 `
 
 const Nav = (props) => {
   return(
     <NavWrapper hasCrossSettings={props.hasCrossSettings}>
-      {props.hasTimer && <IconWraper href="#" onClick={props.toggleTimer}>
+      {/* {props.hasTimer && <IconWraper href="#" onClick={props.toggleTimer}>
         <Icon clock />
-      </IconWraper>}
+      </IconWraper>} */}
 
       {props.hasMenu && <IconWraper href="#" onClick={props.toggleSettings}>
         <Icon menu />
