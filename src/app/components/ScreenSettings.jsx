@@ -4,7 +4,8 @@ import styled, { css } from 'styled-components'
 import { Button } from './Button'
 import { Heading, Text } from './Typography'
 import Nav from './Nav'
-import { InputWrapper, ScreenWrapper } from './Wrappers'
+import { Input, InputWrapper } from './Input'
+import { ScreenWrapper } from './Wrappers'
 
 const ScreenSettings = (props) => {
   return(
@@ -18,7 +19,7 @@ const ScreenSettings = (props) => {
       <Text>How many sets do you want to do?</Text>
 
       <InputWrapper first>
-        <input className="settings-sets" type="number" defaultValue={props.numOfSets} />
+        <Input className="settings-sets" type="number" defaultValue={props.numOfSets} />
 
         <Button onClick={props.changeSets} last>Save</Button>
       </InputWrapper>
@@ -28,7 +29,7 @@ const ScreenSettings = (props) => {
       <Text>How long should the rest pause be (in minutes)? You can use decimal numbers for seconds, i.e.: 0.2 for 12s.</Text>
 
       <InputWrapper>
-        <input className="settings-pause" type="number" defaultValue={props.restPauseLength} />
+        <Input className="settings-pause" type="number" defaultValue={props.restPauseLength} />
 
         <Button onClick={props.changePauseLength} last>Save</Button>
       </InputWrapper>
