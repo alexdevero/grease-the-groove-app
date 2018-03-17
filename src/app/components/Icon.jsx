@@ -1,11 +1,11 @@
 import styled, { css } from 'styled-components'
 
 export const IconWraper = styled.a`
-  color: hsl(0, 0%, 50%);
+  color: hsl(0, 0%, 75%);
   transition: color .25s ease-in-out;
 
   &:hover {
-    color: #00a8ff
+    color: hsl(200.5, 100%, 50%);
   }
 `
 
@@ -124,6 +124,34 @@ export const Icon = styled.span`
       border-left-color: transparent;
       border-bottom-color: transparent;
       transform: rotate(135deg);
+    }
+  `}
+
+  ${props => props.settings && css`
+    margin-top: 3px;
+    margin-right: 5px;
+    width: 26px;
+    height: 26px;
+
+    &::before,
+    &::after {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    &::before {
+      top: 67%;
+      width: 8px;
+      height: 7px;
+      border-radius: 2px;
+      box-shadow: inset 0 0 0 32px, 10px -10px, -10px -14px;
+    }
+
+    &::after {
+      width: 2px;
+      height: 100%;
+      box-shadow: inset 0 0 0 32px, 10px 0, -10px 0;
     }
   `}
 
