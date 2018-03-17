@@ -16,4 +16,8 @@ export const ScreenWrapper = styled.section`
     margin-bottom: 23px;
     text-align: center;
   `}
+
+  ${props => props.center && css`
+    text-align: center;
+  `}
 `
