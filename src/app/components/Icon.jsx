@@ -92,4 +92,45 @@ export const Icon = styled.span`
       transform: translate(-50%, 35%);
     }
   `}
+
+  ${props => props.play && css`
+    margin: 0;
+    width: 0;
+    height: 0;
+    border-width: 6px 0 6px 12px;
+    border-style: solid;
+    border-top-color: transparent;
+    border-bottom-color: transparent;
+  `}
+
+  ${props => props.reset && css`
+    width: 9px;
+    height: 9px;
+    border-width: 2px;
+    border-style: solid;
+    border-left-color: transparent;
+    border-radius: 50%;
+
+    &::before {
+      position: absolute;
+      width: 0;
+      height: 0;
+      top: -2px;
+      bottom: 0;
+      left: -9px;
+      border-width: 6px;
+      border-style: solid;
+      border-right-color: transparent;
+      border-left-color: transparent;
+      border-bottom-color: transparent;
+      transform: rotate(135deg);
+    }
+  `}
+
+  ${props => props.stop && css`
+    margin: 0;
+    width: 0;
+    height: 0;
+    border: 6px solid;
+  `}
 `
