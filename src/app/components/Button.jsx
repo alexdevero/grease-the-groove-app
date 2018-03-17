@@ -1,8 +1,9 @@
 import styled, { css } from 'styled-components'
 
 export const Button = styled.button`
-  padding: 12px 32px;
+  padding: 13px 32px;
   font-weight: 700;
+  line-height: 1;
   color: hsl(0, 0%, 100%);
   background-color: hsl(200.5, 100%, 50%);
   border: 0;
@@ -10,9 +11,8 @@ export const Button = styled.button`
   cursor: pointer;
   transition: background-color .25s ease-in-out;
 
-  &:active,
   &:focus {
-    background-color: hsl(200.5, 100%, 30%);
+    outline: 0;
   }
 
   &:hover {
