@@ -116,7 +116,7 @@ class App extends React.Component {
 
       setTimeout(() => {
         dialog.showMessageBox({type: 'info', buttons: ['Close'], message: 'Congratulations! You finished all sets you had for today!'})
-      }, 600)
+      }, 400)
     }
   }
 
