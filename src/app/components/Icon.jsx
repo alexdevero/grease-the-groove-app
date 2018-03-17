@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components'
 
 export const IconWraper = styled.a`
-  color: #111;
+  color: hsl(0, 0%, 50%);
   transition: color .25s ease-in-out;
 
   &:hover {

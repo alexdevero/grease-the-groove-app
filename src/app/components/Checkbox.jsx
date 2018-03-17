@@ -5,7 +5,7 @@ const LabelEl = styled.label`
   margin-bottom: 0;
   user-select: none;
   cursor: pointer;
-  
+
   & .invisible {
     position: absolute;
     z-index: -1;
@@ -80,6 +80,7 @@ const LabelEl = styled.label`
   }
 
   & > span {
+    color: hsl(0, 0%, 50%);
     pointer-events: none;
     vertical-align: middle;
   }
