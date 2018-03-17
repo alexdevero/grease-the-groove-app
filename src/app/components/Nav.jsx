@@ -15,7 +15,7 @@ const Nav = (props) => {
   return(
     <NavWrapper hasCrossSettings={props.hasCrossSettings}>
       {props.hasMenu && <IconWraper href="#" onClick={props.openSettings}>
-        <Icon menu />
+        <Icon settings />
       </IconWraper>}
 
       {props.hasCrossSettings && <IconWraper href="#" onClick={props.closeSettings}>
