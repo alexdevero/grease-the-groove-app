@@ -15,7 +15,7 @@
   <a href="https://github.com/alexdevero/grease-the-groove-app/releases"><img alt="Current release" src="https://img.shields.io/github/release/alexdevero/grease-the-groove-app.svg"></a>
 </p>
 
-## Grease the Groove app
+## Grease the Groove (GtG)
 
 Electron app to help you practice "[Grease the Groove]" method to achieve your goals and get stronger 💪!
 
