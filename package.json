@@ -43,9 +43,9 @@
     "strength"
   ],
   "engines": {
-    "node": ">=9.x",
-    "npm": ">=5.x",
-    "yarn": ">=1.x.x"
+    "node": ">=9.0",
+    "npm": ">=5.0",
+    "yarn": ">=1.0"
   },
   "main": "main.js",
   "scripts": {
