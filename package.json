@@ -1,6 +1,6 @@
 {
   "name": "grease-the-groove-app",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "description": "Electron app to help you practice Grease the Groove method to achieve your goals and get stronger 💪!",
   "license": "MIT",
   "private": false,
