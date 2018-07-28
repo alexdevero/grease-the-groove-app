@@ -20,4 +20,17 @@ export const ScreenWrapper = styled.section`
   ${props => props.center && css`
     text-align: center;
   `}
+
+  ${props => props.fullHeight && css`
+    display: flex;
+    align-items: center;
+    flex-flow: column;
+    justify-content: space-between;
+    height: calc(100vh - 16px);
+
+    div:last-of-type {
+      margin-top: auto;
+      width: 100%;
+    }
+  `}
 `

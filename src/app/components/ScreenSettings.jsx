@@ -9,7 +9,7 @@ import { ScreenWrapper } from './Wrappers'
 
 const ScreenSettings = (props) => {
   return(
-    <ScreenWrapper absolute>
+    <ScreenWrapper absolute center fullHeight={props.isOnboarding ? true : null}>
       <Nav closeSettings={props.closeSettings} hasCrossSettings />
 
       <Heading>App settings</Heading>
@@ -35,7 +35,7 @@ const ScreenSettings = (props) => {
       </InputWrapper>
 
       {props.isOnboarding && <ButtonWrapper center>
-        <Button text onClick={props.saveSettings}>Save & start!</Button>
+        <Button fullWidth text onClick={props.saveSettings}>Save & start!</Button>
       </ButtonWrapper>}
     </ScreenWrapper>
   )
