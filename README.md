@@ -27,11 +27,19 @@ Electron app to help you practice "[Grease the Groove]" method to achieve your g
 
 ### Table of contents
 
+* [Features](#features)
 * [Install](#install)
 * [Usage](#usage)
 * [Support this project](#support-this-project)
 * [Code of Conduct](#code-of-conduct)
 * [License](#license)
+
+### Features
+
+- Customizable number of sets and reps
+- Customizable length of rest time between sets
+- Sound notification and popup message when it is time to do new set
+- App can be minimized to system tray
 
 ### Install
 
