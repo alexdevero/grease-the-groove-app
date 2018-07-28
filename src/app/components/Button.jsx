@@ -19,7 +19,11 @@ export const Button = styled.button`
     background-color: hsl(200.5, 100%, 40%);
   }
 
-  ${props => props. text && css`
+  ${props => props.fullWidth && css`
+    width: 100%;
+  `}
+
+  ${props => props.text && css`
     font-size: 15px;
   `}
 
