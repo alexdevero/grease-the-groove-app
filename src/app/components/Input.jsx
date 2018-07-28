@@ -19,6 +19,7 @@ export const Input = styled.input`
 
 export const InputWrapper = styled.div`
   margin-top: 8px;
+  display: flex;
 
   ${props => props.first && css`
     margin-bottom: 28px;
@@ -27,4 +28,12 @@ export const InputWrapper = styled.div`
   ${props => props.center && css`
     text-align: center;
   `}
+
+  input {
+    flex-grow: 1;
+  }
+
+  button: {
+    flex-grow: 0;
+  }
 `

@@ -47,8 +47,8 @@ const LabelEl = styled.label`
     margin-right: 8px;
     width: 16px;
     height: 16px;
-    border: 2px solid #C8CCD4;
-    border-radius: 3px;
+    border: 2px solid #c8ccd4;
+    border-radius: 4px;
 
     svg {
       position: absolute;
@@ -68,7 +68,7 @@ const LabelEl = styled.label`
 
       polyline {
         fill: none;
-        stroke: #FFF;
+        stroke: #fff;
         stroke-width: 2;
         stroke-linecap: round;
         stroke-linejoin: round;

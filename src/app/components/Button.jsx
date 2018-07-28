@@ -7,7 +7,7 @@ export const Button = styled.button`
   color: hsl(0, 0%, 100%);
   background-color: hsl(200.5, 100%, 50%);
   border: 0;
-  border-radius: 35px;
+  border-radius: 4px;
   cursor: pointer;
   transition: background-color .25s ease-in-out;
 
