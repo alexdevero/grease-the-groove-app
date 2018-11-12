@@ -22,6 +22,10 @@ const Tray = electron.Tray
 let trayIcon = null
 let appIcon = null
 
+// Request lock to allow only one instance
+// of the app running at the time.
+const gotTheLock = app.requestSingleInstanceLock()
+
 // Determine appropriate icon for platform
 if (platform == 'darwin') {
   trayIcon = path.join(__dirname, 'src', 'assets/grease-the-groove-icon.png')
@@ -213,10 +217,24 @@ function createWindow() {
   })
 }
 
-// This method will be called when Electron has finished
-// initialization and is ready to create browser windows.
-// Some APIs can only be used after this event occurs.
-app.on('ready', createWindow)
+// Check if this is first instance of the app running.
+// If not, block it. If yes, allow it.
+if (!gotTheLock) {
+  app.quit()
+} else {
+  app.on('second-instance', (event, commandLine, workingDirectory) => {
+    // Someone tried to run a second instance, we should focus our window.
+    if (win) {
+        if (win.isMinimized()) win.restore()
+            win.focus()
+    }
+  })
+
+  // This method will be called when Electron has finished
+  // initialization and is ready to create browser windows.
+  // Some APIs can only be used after this event occurs.
+  app.on('ready', createWindow)
+}
 
 // Quit when all windows are closed.
 app.on('window-all-closed', () => {
