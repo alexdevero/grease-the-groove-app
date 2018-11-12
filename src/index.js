@@ -1,6 +1,6 @@
 import React from 'react'
 import { render } from 'react-dom'
-import styled, { injectGlobal } from 'styled-components'
+import styled, { createGlobalStyle } from 'styled-components'
 
 import App from './app/App'
 
@@ -8,7 +8,7 @@ const hindBold = require('./assets/fonts/Hind-Bold.ttf')
 const hindLight = require('./assets/fonts/Hind-Light.ttf')
 const hindRegular = require('./assets/fonts/Hind-Regular.ttf')
 
-injectGlobal`
+const GlobalStyle = createGlobalStyle`
 	@font-face {
     font-family: 'Hind';
 		font-weight: 300;
@@ -47,5 +47,15 @@ let root = document.createElement('div')
 root.id = 'root'
 document.body.appendChild(root)
 
+const AppWrapper = () => {
+  return(
+    <React.Fragment>
+      <GlobalStyle />
+
+      <App />
+    </React.Fragment>
+  )
+}
+
 // Now we can render our application into it
-render(<App />, document.getElementById('root'))
+render(<AppWrapper />, document.getElementById('root'))
