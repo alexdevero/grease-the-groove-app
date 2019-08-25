@@ -65,10 +65,10 @@
     "styled-components": "^4.3.2"
   },
   "devDependencies": {
-    "@babel/core": "^7.0.0",
-    "@babel/preset-env": "^7.0.0",
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
     "@babel/preset-react": "^7.0.0",
-    "babel-loader": "^8.0.0",
+    "babel-loader": "^8.0.6",
     "babili-webpack-plugin": "^0.1.2",
     "electron-packager": "^14.0.4",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
