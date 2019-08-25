@@ -59,7 +59,10 @@ function createWindow() {
     height: 667,
     show: false,
     title: 'Grease the Groove',
-    width: 375
+    width: 375,
+    webPreferences: {
+      nodeIntegration: true
+    }
   })
 
   // Auto-hide main app menu - show it after pressing 'Alt' key
