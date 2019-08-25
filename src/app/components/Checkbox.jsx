@@ -88,7 +88,7 @@ const LabelEl = styled.label`
 
 const Checkbox = ({id, label}) => {
   return(
-    <LabelEl for={id} className="label-cbx">
+    <LabelEl htmlFor={id} className="label-cbx">
       <input id={id} type="checkbox" className="invisible" />
 
       <div className="checkbox">
