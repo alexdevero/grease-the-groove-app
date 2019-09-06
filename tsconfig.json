@@ -15,7 +15,7 @@
     "removeComments": true,
     "skipLibCheck": true,
     "sourceMap": true,
-    "strict": true,
+    "strict": false,
     "target": "esnext",
     "forceConsistentCasingInFileNames": true,
     "esModuleInterop": true,
