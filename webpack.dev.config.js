@@ -15,6 +15,16 @@ module.exports = {
         include: defaultInclude
       },
       {
+        test: /\.ts?$/,
+        loaders: ['babel-loader', 'ts-loader'],
+        include: defaultInclude
+      },
+      {
+        test: /\.tsx?$/,
+        loaders: ['babel-loader', 'ts-loader'],
+        include: defaultInclude
+      },
+      {
         test: /\.(jpe?g|png|gif|ico)$/,
         use: [{ loader: 'file-loader?name=img/[name]__[hash:base64:5].[ext]' }],
         include: defaultInclude
@@ -30,8 +40,10 @@ module.exports = {
       }
     ]
   },
+  entry: './src/index.tsx',
   resolve: {
-    extensions: ['.js', '.jsx'],
+    extensions: ['.js', 'jsx', '.ts', '.tsx'],
+    modules: ['src', 'node_modules']
   },
   target: 'electron-renderer',
   plugins: [
