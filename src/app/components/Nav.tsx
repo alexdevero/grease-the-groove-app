@@ -1,9 +1,20 @@
-import React from 'react'
-import styled, { css } from 'styled-components'
+import * as React from 'react'
+import styled from 'styled-components'
 
 import { Icon, IconWrapper } from './Icon'
 
-const NavWrapper = styled.nav`
+interface NavWrapperInterface {
+  hasCrossSettings?: boolean;
+}
+
+interface NavInterface {
+  hasCrossSettings?: boolean;
+  hasMenu?: boolean;
+  handleCloseSettings: () => void;
+  handleOpenSettings: () => void;
+}
+
+const NavWrapper = styled.nav<NavWrapperInterface>`
   padding-bottom: 12px;
   display: flex;
   align-items: center;
@@ -11,16 +22,20 @@ const NavWrapper = styled.nav`
   width: 100%;
 `
 
-const Nav = (props) => {
-  return(
+const Nav = (props: NavInterface) => {
+  return (
     <NavWrapper hasCrossSettings={props.hasCrossSettings}>
-      {props.hasMenu && <IconWrapper href="#" onClick={props.openSettings}>
-        <Icon settings />
-      </IconWrapper>}
+      {props.hasMenu && (
+        <IconWrapper href="#" onClick={props.handleCloseSettings}>
+          <Icon settings />
+        </IconWrapper>
+      )}
 
-      {props.hasCrossSettings && <IconWrapper href="#" onClick={props.closeSettings}>
-        <Icon cross />
-      </IconWrapper>}
+      {props.hasCrossSettings && (
+        <IconWrapper href="#" onClick={props.handleOpenSettings}>
+          <Icon cross />
+        </IconWrapper>
+      )}
     </NavWrapper>
   )
 }
