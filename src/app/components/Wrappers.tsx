@@ -1,6 +1,13 @@
 import styled, { css } from 'styled-components'
 
-export const ScreenWrapper = styled.section`
+interface ScreenWrapperInterface {
+  absolute?: boolean;
+  center?: boolean;
+  fullHeight?: boolean;
+  static?: boolean;
+}
+
+export const ScreenWrapper = styled.section<ScreenWrapperInterface>`
   ${props => props.absolute && css`
     position: absolute;
     top: 0;
