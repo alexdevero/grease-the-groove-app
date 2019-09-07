@@ -6,10 +6,20 @@ import Nav from './Nav'
 import { Input, InputWrapper } from './Input'
 import { ScreenWrapper } from './Wrappers'
 
-const ScreenSettings = (props) => {
+interface ScreenSettingsInterface {
+  isOnboarding: boolean;
+  numOfSets: number | string;
+  restPauseLength: number | string;
+  handleSetsChange: () => void;
+  handlePauseLengthChange: () => void;
+  closeSettings: (e) => void;
+  handleSaveSettings: (e) => void;
+}
+
+const ScreenSettings = (props: ScreenSettingsInterface) => {
   return (
     <ScreenWrapper absolute center fullHeight={props.isOnboarding ? true : null}>
-      <Nav closeSettings={props.closeSettings} hasCrossSettings />
+      <Nav hasCrossSettings closeSettings={props.closeSettings} />
 
       <Heading>App settings</Heading>
 
@@ -20,7 +30,7 @@ const ScreenSettings = (props) => {
       <InputWrapper first>
         <Input className="settings-sets" type="number" defaultValue={props.numOfSets} />
 
-        {!props.isOnboarding && <Button onClick={props.changeSets} last>Save</Button>}
+        {!props.isOnboarding && <Button last onClick={props.handleSetsChange}>Save</Button>}
       </InputWrapper>
 
       <Heading smallest>Rest pause</Heading>
@@ -30,12 +40,14 @@ const ScreenSettings = (props) => {
       <InputWrapper>
         <Input className="settings-pause" type="number" defaultValue={props.restPauseLength} />
 
-        {!props.isOnboarding && <Button onClick={props.changePauseLength} last>Save</Button>}
+        {!props.isOnboarding && <Button last onClick={props.handlePauseLengthChange}>Save</Button>}
       </InputWrapper>
 
-      {props.isOnboarding && <ButtonWrapper center>
-        <Button fullWidth text onClick={props.saveSettings}>Save & start!</Button>
-      </ButtonWrapper>}
+      {props.isOnboarding && (
+        <ButtonWrapper center>
+          <Button fullWidth text onClick={props.handleSaveSettings}>Save & start!</Button>
+        </ButtonWrapper>
+      )}
     </ScreenWrapper>
   )
 }
