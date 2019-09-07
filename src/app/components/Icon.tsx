@@ -1,5 +1,15 @@
 import styled, { css } from 'styled-components'
 
+interface IconInterface {
+  menu?: boolean;
+  cross?: boolean;
+  clock?: boolean;
+  play?: boolean;
+  reset?: boolean;
+  settings?: boolean;
+  stop?: boolean;
+}
+
 export const IconWraper = styled.a`
   color: hsl(0, 0%, 75%);
   transition: color .25s ease-in-out;
@@ -9,7 +19,7 @@ export const IconWraper = styled.a`
   }
 `
 
-export const Icon = styled.span`
+export const Icon = styled.span<IconInterface>`
   position: relative;
   vertical-align: middle;
   display: inline-block;
