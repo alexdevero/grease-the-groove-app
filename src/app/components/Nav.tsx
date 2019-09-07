@@ -5,6 +5,7 @@ import { Icon, IconWrapper } from './Icon'
 
 interface NavWrapperInterface {
   hasCrossSettings?: boolean;
+  closeSettings?: (e) => void;
 }
 
 interface NavInterface {
