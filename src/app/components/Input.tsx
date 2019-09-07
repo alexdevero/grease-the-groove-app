@@ -1,5 +1,10 @@
 import styled, { css } from 'styled-components'
 
+interface InputWrapperInterface {
+  center?: boolean;
+  first?: boolean;
+}
+
 export const Input = styled.input`
   padding: 10px;
   margin: 0;
@@ -17,7 +22,7 @@ export const Input = styled.input`
   }
 `
 
-export const InputWrapper = styled.div`
+export const InputWrapper = styled.div<InputWrapperInterface>`
   margin-top: 8px;
   display: flex;
 
