@@ -1,6 +1,18 @@
 import styled, { css } from 'styled-components'
 
-export const Button = styled.button`
+interface ButtonInterface {
+  first?: boolean;
+  fullWidth?: boolean;
+  last?: boolean;
+  middle?: boolean;
+  text?: boolean;
+}
+
+interface ButtonWrapperInterface {
+  center?: boolean;
+}
+
+export const Button = styled.button<ButtonInterface>`
   padding: 13px 32px;
   font-weight: 700;
   line-height: 1;
@@ -42,7 +54,7 @@ export const Button = styled.button`
   `}
 `
 
-export const ButtonWrapper = styled.div`
+export const ButtonWrapper = styled.div<ButtonWrapperInterface>`
     margin-top: 18px;
 
   ${props => props.center && css`
