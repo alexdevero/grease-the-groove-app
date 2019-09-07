@@ -1,7 +1,7 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
 
-import { Icon, IconWraper } from './Icon'
+import { Icon, IconWrapper } from './Icon'
 
 const NavWrapper = styled.nav`
   padding-bottom: 12px;
@@ -14,13 +14,13 @@ const NavWrapper = styled.nav`
 const Nav = (props) => {
   return(
     <NavWrapper hasCrossSettings={props.hasCrossSettings}>
-      {props.hasMenu && <IconWraper href="#" onClick={props.openSettings}>
+      {props.hasMenu && <IconWrapper href="#" onClick={props.openSettings}>
         <Icon settings />
-      </IconWraper>}
+      </IconWrapper>}
 
-      {props.hasCrossSettings && <IconWraper href="#" onClick={props.closeSettings}>
+      {props.hasCrossSettings && <IconWrapper href="#" onClick={props.closeSettings}>
         <Icon cross />
-      </IconWraper>}
+      </IconWrapper>}
     </NavWrapper>
   )
 }

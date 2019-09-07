@@ -10,7 +10,7 @@ interface IconInterface {
   stop?: boolean;
 }
 
-export const IconWraper = styled.a`
+export const IconWrapper = styled.a`
   color: hsl(0, 0%, 75%);
   transition: color .25s ease-in-out;
 

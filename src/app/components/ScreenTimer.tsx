@@ -5,7 +5,7 @@ import bellSound from './../../assets/sounds/definite.mp3'
 
 import { Button, ButtonWrapper } from './Button'
 import { Heading, SpanBig, SpanSmall, Text } from './Typography'
-import { Icon, IconWraper } from './Icon'
+import { Icon, IconWrapper } from './Icon'
 import Nav from './Nav'
 import { ScreenWrapper } from './Wrappers'
 
