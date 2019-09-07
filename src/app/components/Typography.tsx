@@ -1,6 +1,13 @@
 import styled, { css } from 'styled-components'
 
-export const Heading = styled.h1`
+interface HeadingInterface {
+  center?: boolean;
+  top?: boolean;
+  small?: boolean;
+  smallest?: boolean;
+}
+
+export const Heading = styled.h1<HeadingInterface>`
   margin-top: 0;
   margin-bottom: 0;
   font-size: 32px;
