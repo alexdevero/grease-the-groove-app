@@ -1,14 +1,14 @@
-import React from 'react'
+import * as React from 'react'
 import styled from 'styled-components'
 
 import Checkbox from './components/Checkbox'
-import Nav from './components/Nav'
+// import Nav from './components/Nav'
 import ScreenMain from './components/ScreenMain'
 import ScreenSettings from './components/ScreenSettings'
-import ScreenTimer from './components/ScreenTimer'
+// import ScreenTimer from './components/ScreenTimer'
 import ScreenWelcome from './components/ScreenWelcome'
 
-import tadaSound from './../assets/sounds/ta-da.mp3'
+// import tadaSound from './../assets/sounds/ta-da.mp3'
 
 const dialog = require('electron').remote.dialog
 
@@ -32,12 +32,14 @@ class App extends React.Component {
   }
 
   generateSetsList() {
-    let setsItems = []
+    const setsItems = []
 
-    for(let i = 0; i<this.state.numOfSets; i++) {
-      setsItems.push(<li key={i} onClick={(e) => this.countCheckedSets(e)}>
-        <Checkbox id={`set${i}`} label={`Set number ${i+1}`} />
-      </li>)
+    for (let i = 0; i < this.state.numOfSets; i++) {
+      setsItems.push(
+        <li key={i} onClick={(e) => this.countCheckedSets(e)}>
+          <Checkbox id={`set${i}`} label={`Set number ${i + 1}`} />
+        </li>
+      )
     }
 
     return setsItems
@@ -46,11 +48,11 @@ class App extends React.Component {
   openSettings(e) {
     e.preventDefault()
 
-    this.setState({
+    this.setState((prevState) => ({
       isMainScreenShown: false,
-      isSettingsOpen: !this.state.isSettingsOpen,
+      isSettingsOpen: prevState.isSettingsOpen,
       isWelcomeScreenShown: false
-    })
+    }))
   }
 
   closeSettings(e) {
@@ -58,35 +60,47 @@ class App extends React.Component {
 
     this.setState({
       isMainScreenShown: true,
-      isSettingsOpen: false,
-      isOnboarding: false
+      isOnboarding: false,
+      isSettingsOpen: false
     })
   }
 
   updateNumOfSets(e) {
-    let setsValue = document.querySelector('.settings-sets').value
+    const setsValue = document.querySelector('.settings-sets').value
 
-    this.setState({numOfSets: setsValue})
+    this.setState({
+      numOfSets: setsValue
+    })
 
-    dialog.showMessageBox({type: 'info', buttons: ['OK'], message: 'Settings for sets have been updated!'})
+    dialog.showMessageBox({
+      buttons: ['OK'],
+      message: 'Settings for sets have been updated!',
+      type: 'info'
+    })
   }
 
   updateRestPauseLength(e) {
-    let restPauseValue = document.querySelector('.settings-pause').value
+    const restPauseValue = document.querySelector('.settings-pause').value
 
-    this.setState({restPauseLength: restPauseValue})
+    this.setState({
+      restPauseLength: restPauseValue
+    })
 
-    dialog.showMessageBox({type: 'info', buttons: ['OK'], message: 'Settings for rest pause have been updated!'})
+    dialog.showMessageBox({
+      buttons: ['OK'],
+      message: 'Settings for rest pause have been updated!',
+      type: 'info'
+    })
   }
 
   saveSettings(e) {
-    let restPauseValue = document.querySelector('.settings-pause').value
-    let setsValue = document.querySelector('.settings-sets').value
+    const restPauseValue = document.querySelector('.settings-pause').value
+    const setsValue = document.querySelector('.settings-sets').value
 
     this.setState({
       isMainScreenShown: true,
-      isSettingsOpen: false,
       isOnboarding: false,
+      isSettingsOpen: false,
       numOfSets: setsValue,
       restPauseLength: restPauseValue
     })
@@ -97,11 +111,11 @@ class App extends React.Component {
     e.preventDefault()
 
     // Toggle checkbox
-    let checkbox = e.currentTarget.querySelector('[type=checkbox]')
-    checkbox.checked = checkbox.checked ? false : true
+    const checkbox = e.currentTarget.querySelector('[type=checkbox]')
+    checkbox.checked = !checkbox.checked
 
     // Check number of checked checkboxes
-    let checkboxesArray = document.querySelectorAll('[type=checkbox]:checked')
+    const checkboxesArray = document.querySelectorAll('[type=checkbox]:checked')
 
     // If number of completed sets matches number of sets
     // show success message and play ta da sound
@@ -115,7 +129,11 @@ class App extends React.Component {
       // }, 450)
 
       setTimeout(() => {
-        dialog.showMessageBox({type: 'info', buttons: ['Close'], message: 'Congratulations! You finished all sets you had for today!'})
+        dialog.showMessageBox({
+          buttons: ['Close'],
+          message: 'Congratulations! You finished all sets you had for today!',
+          type: 'info'
+        })
       }, 400)
     }
   }
@@ -124,14 +142,22 @@ class App extends React.Component {
     return (
       <AppWrapper>
         {/* Main screen */}
-        {this.state.isMainScreenShown && <ScreenMain listGenerator={this.generateSetsList()} isTimerShown={this.state.isTimerShown} closeSettings={(e) => this.closeSettings(e)}  openSettings={(e) => this.openSettings(e)} restPauseLength={this.state.restPauseLength} />}
+        {this.state.isMainScreenShown && (
+          <ScreenMain
+            listGenerator={this.generateSetsList()}
+            isTimerShown={this.state.isTimerShown}
+            closeSettings={(e) => this.closeSettings(e)}
+            openSettings={(e) => this.openSettings(e)}
+            restPauseLength={this.state.restPauseLength}
+          />
+        )}
 
         {/* Timer screen */}
         {/* {this.state.isTimerShown && <ScreenTimer pauseLength={this.state.restPauseLength} toggleTimer={(e) => this.toggleTimer(e)} />} */}
 
         {/* Settings screen */}
-        {
-          this.state.isSettingsOpen && <ScreenSettings
+        {this.state.isSettingsOpen && (
+          <ScreenSettings
             closeSettings={(e) => this.closeSettings(e)}
             changeSets={(e) => this.updateNumOfSets(e)}
             changePauseLength={(e) => this.updateRestPauseLength(e)}
@@ -140,10 +166,12 @@ class App extends React.Component {
             isOnboarding={this.state.isOnboarding}
             saveSettings={(e) => this.saveSettings(e)}
           />
-        }
+        )}
 
         {/* Welcome screen */}
-        {this.state.isWelcomeScreenShown && <ScreenWelcome openSettings={(e) => this.openSettings(e)} />}
+        {this.state.isWelcomeScreenShown && (
+          <ScreenWelcome openSettings={(e) => this.openSettings(e)} />
+        )}
       </AppWrapper>
     )
   }
