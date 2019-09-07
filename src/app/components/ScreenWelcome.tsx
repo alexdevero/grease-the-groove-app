@@ -5,7 +5,7 @@ import { Heading, Text } from './Typography'
 import { ScreenWrapper } from './Wrappers'
 
 interface ScreenWelcomeInterface {
-  handleOpenSettings?: () => void;
+  handleOpenSettings?: (e) => void;
 }
 
 const ScreenWelcome = (props: ScreenWelcomeInterface) => {
