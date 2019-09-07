@@ -12,11 +12,21 @@ import ScreenWelcome from './components/ScreenWelcome'
 
 const dialog = require('electron').remote.dialog
 
+interface AppStateInterface {
+  isMainScreenShown: boolean;
+  isOnboarding: boolean;
+  isSettingsOpen: boolean;
+  isTimerShown: boolean;
+  isWelcomeScreenShown: boolean;
+  numOfSets: number;
+  restPauseLength: number;
+}
+
 const AppWrapper = styled.main`
   position: relative;
 `
 
-class App extends React.Component {
+class App extends React.Component<{}, AppStateInterface> {
   constructor(props) {
     super(props)
 
@@ -65,7 +75,7 @@ class App extends React.Component {
     })
   }
 
-  updateNumOfSets(e) {
+  updateNumOfSets() {
     const setsValue = document.querySelector('.settings-sets').value
 
     this.setState({
@@ -79,7 +89,7 @@ class App extends React.Component {
     })
   }
 
-  updateRestPauseLength(e) {
+  updateRestPauseLength() {
     const restPauseValue = document.querySelector('.settings-pause').value
 
     this.setState({
@@ -93,7 +103,7 @@ class App extends React.Component {
     })
   }
 
-  saveSettings(e) {
+  saveSettings() {
     const restPauseValue = document.querySelector('.settings-pause').value
     const setsValue = document.querySelector('.settings-sets').value
 
@@ -106,7 +116,7 @@ class App extends React.Component {
     })
   }
 
-  countCheckedSets(e) {
+  countCheckedSets() {
     // Prevent event firing twice
     e.preventDefault()
 
@@ -159,18 +169,18 @@ class App extends React.Component {
         {this.state.isSettingsOpen && (
           <ScreenSettings
             closeSettings={(e) => this.closeSettings(e)}
-            changeSets={(e) => this.updateNumOfSets(e)}
-            changePauseLength={(e) => this.updateRestPauseLength(e)}
+            handleSetsChange={() => this.updateNumOfSets()}
+            handlePauseLengthChange={() => this.updateRestPauseLength()}
             numOfSets={this.state.numOfSets}
             restPauseLength={this.state.restPauseLength}
             isOnboarding={this.state.isOnboarding}
-            saveSettings={(e) => this.saveSettings(e)}
+            handleSaveSettings={() => this.saveSettings()}
           />
         )}
 
         {/* Welcome screen */}
         {this.state.isWelcomeScreenShown && (
-          <ScreenWelcome openSettings={(e) => this.openSettings(e)} />
+          <ScreenWelcome handleOpenSettings={(e) => this.openSettings(e)} />
         )}
       </AppWrapper>
     )
