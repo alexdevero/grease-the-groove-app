@@ -1,75 +1,99 @@
-import React from 'react'
-import styled from 'styled-components'
+import * as React from 'react'
 
 import bellSound from './../../assets/sounds/definite.mp3'
 
 import { Button, ButtonWrapper } from './Button'
-import { Heading, SpanBig, SpanSmall, Text } from './Typography'
-import { Icon, IconWrapper } from './Icon'
-import Nav from './Nav'
+import { SpanBig, SpanSmall, Text } from './Typography'
+import { Icon } from './Icon'
 import { ScreenWrapper } from './Wrappers'
 
 // Import electron dialog module
 const dialog = require('electron').remote.dialog
 
-export default class ScreenTimer extends React.Component {
+interface ScreenTimerPropsInterface {
+  pauseLength: number;
+  timer: number;
+}
+
+interface ScreenTimerStateInterface {
+  isTimerRunning: boolean;
+  seconds: number;
+  time: {
+    h: number;
+    m: number;
+    s: number;
+  };
+}
+
+export default class ScreenTimer extends React.Component<ScreenTimerPropsInterface, ScreenTimerStateInterface> {
   constructor(props) {
     super(props)
 
     this.state = {
       isTimerRunning: false,
       seconds: this.props.pauseLength * 60, // pauseLength is in minutes
-      time: {}
+      time: {
+        h: 0,
+        m: 0,
+        s: 0
+      }
     }
 
     this.timer = 0
     this.countDown = this.countDown.bind(this)
     this.playSound = this.playSound.bind(this)
-    this.restartTimer = this.restartTimer.bind(this)
+    this.handleRestartTimer = this.handleRestartTimer.bind(this)
     this.startTimer = this.startTimer.bind(this)
     this.stopTimer = this.stopTimer.bind(this)
   }
 
-  secondsToTime(secs) {
-    let hours = Math.floor(secs / (60 * 60))
+  componentDidMount() {
+    // const restPauseLength = this.props.pauseLength * 60 // pauseLength is in minutes
 
-    let divisor_for_minutes = secs % (60 * 60)
-    let minutes = Math.floor(divisor_for_minutes / 60)
+    this.setState((prevState) => ({
+      time: this.secondsToTime(prevState.seconds)
+    }))
+  }
 
-    let divisor_for_seconds = divisor_for_minutes % 60
-    let seconds = Math.ceil(divisor_for_seconds)
+  // Define class members
+  timer: number
 
-    let obj = {
-      'h': hours,
-      'm': minutes,
-      's': seconds
+  startTimer: () => void
+
+  stopTimer: () => void
+
+  secondsToTime(secs: number) {
+    const hours = Math.floor(secs / (60 * 60))
+
+    const divisorForMinutes = secs % (60 * 60)
+    const minutes = Math.floor(divisorForMinutes / 60)
+
+    const divisorForSeconds = divisorForMinutes % 60
+    const seconds = Math.ceil(divisorForSeconds)
+
+    const obj = {
+      h: hours,
+      m: minutes,
+      s: seconds
     }
 
     return obj
   }
 
-  componentDidMount() {
-    let restPauseLength = this.props.pauseLength * 60 // pauseLength is in minutes
-
-    this.setState({
-      time: this.secondsToTime(this.state.seconds)
-    })
-  }
-
-  startTimer() {
+  handleStartTimer() {
     if (!this.state.isTimerRunning && this.state.seconds !== 0) {
       // If timer is not at 0 and is not running, start countdown
       this.timer = setInterval(this.countDown, 1000)
     } else {
       // If we are on 0, restart timer
-      this.restartTimer()
+      this.handleRestartTimer()
 
       // Start new countdown
       this.timer = setInterval(this.countDown, 1000)
     }
   }
 
-  stopTimer() {
+  handleStopTimer() {
     clearInterval(this.timer)
 
     this.setState({
@@ -77,11 +101,11 @@ export default class ScreenTimer extends React.Component {
     })
   }
 
-  restartTimer() {
+  handleRestartTimer() {
     clearInterval(this.timer)
 
-    let newTime = this.secondsToTime(this.props.pauseLength * 60)
-    let newSeconds = this.state.seconds - 1
+    const newTime = this.secondsToTime(this.props.pauseLength * 60)
+    // const newSeconds = this.state.seconds - 1
 
     this.setState({
       isTimerRunning: false,
@@ -92,7 +116,7 @@ export default class ScreenTimer extends React.Component {
 
   countDown() {
     // Remove one second, set state so a re-render happens.
-    let seconds = this.state.seconds - 1
+    const seconds = this.state.seconds - 1
 
     this.setState({
       isTimerRunning: true,
@@ -113,7 +137,7 @@ export default class ScreenTimer extends React.Component {
   }
 
   playSound() {
-    const soundFile = new Audio(bellSound);
+    const soundFile = new Audio(bellSound)
 
     soundFile.volume = 1 // 0.5 is half volume
 
@@ -127,9 +151,9 @@ export default class ScreenTimer extends React.Component {
   }
 
   render() {
-    const props = this.props
+    // const props = this.props
 
-    return(
+    return (
       <ScreenWrapper static>
         {/* <Nav toggleTimer={props.toggleTimer} hasCrossTimer /> */}
 
@@ -143,14 +167,16 @@ export default class ScreenTimer extends React.Component {
           <SpanSmall>min</SpanSmall>
           {' : '}
           <SpanBig>{this.state.time.s}</SpanBig>
-          <SpanSmall>sec</SpanSmall></Text>
+
+          <SpanSmall>sec</SpanSmall>
+        </Text>
 
         <ButtonWrapper>
-          <Button onClick={this.restartTimer} first><Icon reset /></Button>
+          <Button first onClick={this.handleRestartTimer}><Icon reset /></Button>
 
-          <Button onClick={this.startTimer} middle><Icon play /></Button>
+          <Button middle onClick={this.handleStartTimer}><Icon play /></Button>
 
-          <Button onClick={this.stopTimer} last><Icon stop /></Button>
+          <Button last onClick={this.handleStopTimer}><Icon stop /></Button>
         </ButtonWrapper>
       </ScreenWrapper>
     )
