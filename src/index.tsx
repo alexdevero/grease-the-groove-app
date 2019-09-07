@@ -1,6 +1,6 @@
 import React from 'react'
 import { render } from 'react-dom'
-import styled, { createGlobalStyle } from 'styled-components'
+import { createGlobalStyle } from 'styled-components'
 
 import App from './app/App'
 
@@ -42,18 +42,18 @@ const GlobalStyle = createGlobalStyle`
 `
 
 // Since we are using HtmlWebpackPlugin WITHOUT a template, we should create our own root node in the body element before rendering into it
-let root = document.createElement('div')
+const root = document.createElement('div')
 
 root.id = 'root'
 document.body.appendChild(root)
 
 const AppWrapper = () => {
-  return(
-    <React.Fragment>
+  return (
+    <>
       <GlobalStyle />
 
       <App />
-    </React.Fragment>
+    </>
   )
 }
 
