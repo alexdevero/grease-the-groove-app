@@ -1,16 +1,15 @@
-import React from 'react'
-import styled from 'styled-components'
+import * as React from 'react'
 
-import { Heading, Text } from './Typography'
+// import { Heading, Text } from './Typography'
 import { ListUnstyled } from './Lists'
 import Nav from './Nav'
 import ScreenTimer from './ScreenTimer'
 import { ScreenWrapper } from './Wrappers'
 
 const ScreenMain = (props) => {
-  return(
+  return (
     <ScreenWrapper absolute>
-      <Nav closeSettings={props.closeSettings} openSettings={props.openSettings} hasMenu />
+      <Nav hasMenu handleCloseSettings={props.closeSettings} handleOpenSettings={props.openSettings} />
 
       {/* <Heading>Grease the Groove!</Heading> */}
 
