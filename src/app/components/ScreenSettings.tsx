@@ -1,5 +1,4 @@
-import React from 'react'
-import styled, { css } from 'styled-components'
+import * as React from 'react'
 
 import { Button, ButtonWrapper } from './Button'
 import { Heading, Text } from './Typography'
@@ -8,7 +7,7 @@ import { Input, InputWrapper } from './Input'
 import { ScreenWrapper } from './Wrappers'
 
 const ScreenSettings = (props) => {
-  return(
+  return (
     <ScreenWrapper absolute center fullHeight={props.isOnboarding ? true : null}>
       <Nav closeSettings={props.closeSettings} hasCrossSettings />
 
