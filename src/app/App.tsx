@@ -116,7 +116,7 @@ class App extends React.Component<{}, AppStateInterface> {
     })
   }
 
-  countCheckedSets() {
+  countCheckedSets(e) {
     // Prevent event firing twice
     e.preventDefault()
 
@@ -129,7 +129,7 @@ class App extends React.Component<{}, AppStateInterface> {
 
     // If number of completed sets matches number of sets
     // show success message and play ta da sound
-    if (checkboxesArray.length === parseInt(this.state.numOfSets)) {
+    if (checkboxesArray.length === this.state.numOfSets) {
       // setTimeout(() => {
       //   let soundFile = new Audio(tadaSound);
       //
