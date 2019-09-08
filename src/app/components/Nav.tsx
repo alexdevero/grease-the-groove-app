@@ -11,7 +11,7 @@ interface NavInterface {
   hasCrossSettings?: boolean;
   hasMenu?: boolean;
   handleCloseSettings?: (e) => void;
-  handleOpenSettings?: () => void;
+  handleOpenSettings?: (e) => void;
 }
 
 const NavWrapper = styled.nav<NavWrapperInterface>`
@@ -26,13 +26,13 @@ const Nav = (props: NavInterface) => {
   return (
     <NavWrapper hasCrossSettings={props.hasCrossSettings}>
       {props.hasMenu && (
-        <IconWrapper href="#" onClick={props.handleCloseSettings}>
+        <IconWrapper href="#" onClick={props.handleOpenSettings}>
           <Icon settings />
         </IconWrapper>
       )}
 
       {props.hasCrossSettings && (
-        <IconWrapper href="#" onClick={props.handleOpenSettings}>
+        <IconWrapper href="#" onClick={props.handleCloseSettings}>
           <Icon cross />
         </IconWrapper>
       )}
