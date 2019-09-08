@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import bellSound from './../../assets/sounds/definite.mp3'
+// import bellSound from './../../assets/sounds/definite.mp3'
 
 import { Button, ButtonWrapper } from './Button'
 import { SpanBig, SpanSmall, Text } from './Typography'
@@ -12,7 +12,6 @@ const dialog = require('electron').remote.dialog
 
 interface ScreenTimerPropsInterface {
   pauseLength: number;
-  timer: number;
 }
 
 interface ScreenTimerStateInterface {
@@ -137,7 +136,7 @@ export default class ScreenTimer extends React.Component<ScreenTimerPropsInterfa
   }
 
   playSound() {
-    const soundFile = new Audio(bellSound)
+    const soundFile = new Audio(require('./../../assets/sounds/definite.mp3'))
 
     soundFile.volume = 1 // 0.5 is half volume
 
@@ -146,7 +145,11 @@ export default class ScreenTimer extends React.Component<ScreenTimerPropsInterfa
     // Wait 0.25s so the sound plays first
     setTimeout(() => {
       // Use electron native dialog box (notification box)
-      dialog.showMessageBox({type: 'info', buttons: ['OK'], message: 'Time for Grease the Groove!'})
+      dialog.showMessageBox({
+        buttons: ['OK'],
+        message: 'Time for Grease the Groove!',
+        type: 'info'
+      })
     }, 400)
   }
 
