@@ -8,8 +8,8 @@ import { ScreenWrapper } from './Wrappers'
 
 interface ScreenSettingsInterface {
   isOnboarding: boolean;
-  numOfSets: number | string;
-  restPauseLength: number | string;
+  numOfSets: number;
+  restPauseLength: number;
   handleSetsChange: () => void;
   handlePauseLengthChange: () => void;
   closeSettings: (e) => void;
@@ -19,7 +19,7 @@ interface ScreenSettingsInterface {
 const ScreenSettings = (props: ScreenSettingsInterface) => {
   return (
     <ScreenWrapper absolute center fullHeight={props.isOnboarding ? true : null}>
-      <Nav hasCrossSettings closeSettings={props.closeSettings} />
+      <Nav hasCrossSettings handleCloseSettings={props.closeSettings} />
 
       <Heading>App settings</Heading>
 
