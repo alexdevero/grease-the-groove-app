@@ -5,14 +5,13 @@ import { Icon, IconWrapper } from './Icon'
 
 interface NavWrapperInterface {
   hasCrossSettings?: boolean;
-  closeSettings?: (e) => void;
 }
 
 interface NavInterface {
   hasCrossSettings?: boolean;
   hasMenu?: boolean;
-  handleCloseSettings: () => void;
-  handleOpenSettings: () => void;
+  handleCloseSettings?: (e) => void;
+  handleOpenSettings?: () => void;
 }
 
 const NavWrapper = styled.nav<NavWrapperInterface>`
