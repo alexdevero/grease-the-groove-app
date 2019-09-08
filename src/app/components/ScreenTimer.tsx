@@ -42,8 +42,8 @@ export default class ScreenTimer extends React.Component<ScreenTimerPropsInterfa
     this.countDown = this.countDown.bind(this)
     this.playSound = this.playSound.bind(this)
     this.handleRestartTimer = this.handleRestartTimer.bind(this)
-    this.startTimer = this.startTimer.bind(this)
-    this.stopTimer = this.stopTimer.bind(this)
+    this.handleStartTimer = this.handleStartTimer.bind(this)
+    this.handleStopTimer = this.handleStopTimer.bind(this)
   }
 
   componentDidMount() {
@@ -56,10 +56,6 @@ export default class ScreenTimer extends React.Component<ScreenTimerPropsInterfa
 
   // Define class members
   timer: number
-
-  startTimer: () => void
-
-  stopTimer: () => void
 
   secondsToTime(secs: number) {
     const hours = Math.floor(secs / (60 * 60))
